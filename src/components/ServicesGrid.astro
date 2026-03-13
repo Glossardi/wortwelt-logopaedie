@@ -1,0 +1,103 @@
+---
+/**
+ * ServicesGrid.astro — Leistungen-Übersicht
+ *
+ * Zeigt Leistungen als Karten-Grid. Generisch gehalten – in jeder Branche einsetzbar.
+ */
+
+interface Service {
+  title: string;
+  description: string;
+  /** SVG-Icon-Pfad oder Emoji (optional) */
+  icon?: string;
+  /** Link zu Detailseite (optional) */
+  href?: string;
+}
+
+interface Props {
+  services: Service[];
+  /** Abschnittsüberschrift */
+  heading?: string;
+  /** Einleitungstext */
+  intro?: string;
+}
+
+const {
+  services,
+  heading = "Unsere Leistungen",
+  intro,
+} = Astro.props;
+---
+
+<section class="section" aria-labelledby="services-heading">
+  <div class="container">
+    <div class="section-header centered">
+      <h2 class="section-heading" id="services-heading">{heading}</h2>
+      {intro && <p class="section-intro">{intro}</p>}
+    </div>
+
+    <ul class="grid-auto services-grid" role="list">
+      {services.map((service) => (
+        <li class="card service-card">
+          {service.icon && (
+            <div class="service-icon" aria-hidden="true">{service.icon}</div>
+          )}
+          <h3 class="service-title">{service.title}</h3>
+          <p class="service-desc">{service.description}</p>
+          {service.href && (
+            <a href={service.href} class="service-link">
+              Mehr erfahren
+              <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </a>
+          )}
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .service-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .service-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+
+  .service-icon {
+    font-size: 2rem;
+    line-height: 1;
+  }
+
+  .service-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  .service-desc {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .service-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--color-primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    margin-top: auto;
+    transition: gap 0.2s ease;
+  }
+  .service-link:hover { gap: 0.6rem; }
+  .service-link:focus-visible { outline: 3px solid var(--color-primary); border-radius: 2px; }
+</style>

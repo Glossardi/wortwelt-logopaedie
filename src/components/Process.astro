@@ -1,0 +1,96 @@
+---
+/**
+ * Process.astro — Ablauf / Prozessschritte
+ *
+ * Erklärt den typischen Ablauf einer Zusammenarbeit in klaren Schritten.
+ * Schafft Vertrauen und reduziert Hemmschwellen bei Neukunden.
+ */
+
+interface Step {
+  number: string | number;
+  title: string;
+  description: string;
+}
+
+interface Props {
+  steps: Step[];
+  heading?: string;
+  intro?: string;
+}
+
+const {
+  steps,
+  heading = "So arbeiten wir",
+  intro,
+} = Astro.props;
+---
+
+<section class="section section--surface" aria-labelledby="process-heading">
+  <div class="container">
+    <div class="section-header centered">
+      <h2 class="section-heading" id="process-heading">{heading}</h2>
+      {intro && <p class="section-intro">{intro}</p>}
+    </div>
+
+    <ol class="process-list" role="list">
+      {steps.map((step) => (
+        <li class="process-step">
+          <div class="step-number" aria-hidden="true">{step.number}</div>
+          <div class="step-content">
+            <h3 class="step-title">{step.title}</h3>
+            <p class="step-desc">{step.description}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .process-list {
+    display: grid;
+    gap: 2rem;
+    list-style: none;
+    counter-reset: none;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+  }
+
+  .process-step {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    position: relative;
+  }
+
+  .step-number {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .step-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .step-title {
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  .step-desc {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+</style>

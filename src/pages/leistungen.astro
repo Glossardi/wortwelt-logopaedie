@@ -1,0 +1,207 @@
+---
+/**
+ * leistungen.astro — Leistungsseite
+ *
+ * Detailliertere Darstellung aller Leistungen mit Beschreibungen.
+ */
+import PageLayout from "@layouts/PageLayout.astro";
+import CTA from "@components/CTA.astro";
+
+const leistungen = [
+  {
+    id: "installation",
+    title: "Elektroinstallation",
+    icon: "⚡",
+    description: "Von der Steckdose bis zur kompletten Hausinstallation – wir planen und installieren normgerecht und termingerecht.",
+    details: [
+      "Neuinstallationen in Neubau und Bestand",
+      "Erweiterung und Modernisierung bestehender Anlagen",
+      "Unterverteilungen und Sicherungsschränke",
+      "Beleuchtungsplanung und -installation",
+      "Außenanlagen und Gartenbeleuchtung",
+      "Stromkreise für Küche, Bad und Werkstatt",
+    ],
+  },
+  {
+    id: "photovoltaik",
+    title: "Photovoltaik",
+    icon: "☀️",
+    description: "Nachhaltig Strom produzieren und Kosten senken – wir begleiten Sie von der Planung bis zur Netzanmeldung.",
+    details: [
+      "Individuelle Anlageplanung und Wirtschaftlichkeitsberechnung",
+      "Installation von Dach- und Fassadenanlagen",
+      "Speichersysteme und Wechselrichter",
+      "Netzanmeldung und Inbetriebnahme",
+      "Wartung und Monitoring bestehender Anlagen",
+      "Kombination mit Wärmepumpe und Wallbox",
+    ],
+  },
+  {
+    id: "smarthome",
+    title: "Hausautomation",
+    icon: "🏠",
+    description: "Intelligente Steuerung von Licht, Heizung und Sicherheit – komfortabel und energieeffizient.",
+    details: [
+      "Smart-Home-Systeme (KNX, Loxone, Homematic)",
+      "Automatische Beleuchtungssteuerung",
+      "Jalousie- und Rolladensteuerung",
+      "Heizungsregelung und Raumklima",
+      "Alarmanlagen und Videotürklingeln",
+      "Sprachsteuerung und App-Integration",
+    ],
+  },
+  {
+    id: "wartung",
+    title: "Wartung & Prüfung",
+    icon: "🔧",
+    description: "Regelmäßige Prüfungen schützen Mitarbeiter, Kunden und Ihre Immobilien – und sind oft Pflicht.",
+    details: [
+      "DGUV-V3-Prüfung ortsveränderlicher Geräte",
+      "Prüfung elektrischer Anlagen nach DIN VDE",
+      "Wartungsverträge für Betriebe und Praxen",
+      "Protokollierung und Dokumentation",
+      "Sicherheitsprüfungen für Vermietungsimmobilien",
+      "Thermografische Untersuchungen auf Anfrage",
+    ],
+  },
+  {
+    id: "notfall",
+    title: "Notfallservice",
+    icon: "🚨",
+    description: "Stromausfall oder Sicherungsdefekt? Wir helfen schnell und zuverlässig – auch kurzfristig.",
+    details: [
+      "Schnelle Reaktionszeiten im Versorgungsgebiet",
+      "Störungsbeseitigung und Fehlersuche",
+      "Provisorische Absicherung bei Gefahr",
+      "Samstagsservice nach Absprache",
+    ],
+  },
+  {
+    id: "emobility",
+    title: "E-Mobilität",
+    icon: "🔌",
+    description: "Laden Sie Ihr Elektrofahrzeug zuhause oder im Betrieb – mit der richtigen Infrastruktur.",
+    details: [
+      "Beratung und Planung von Wallboxen",
+      "Installation geförderter Ladepunkte",
+      "Lastmanagementsysteme für Flotten",
+      "Abrechnung und Abrechnungskonzepte für Firmen",
+    ],
+  },
+];
+---
+
+<PageLayout
+  title="Leistungen"
+  description="Unsere Leistungen im Überblick: Elektroinstallation, Photovoltaik, Hausautomation, Wartung und mehr – in Musterstadt und Umgebung."
+>
+  <!-- Seiten-Hero -->
+  <section class="page-hero section--surface">
+    <div class="container">
+      <h1>Unsere Leistungen</h1>
+      <p class="page-hero-intro">
+        Als Meisterbetrieb bieten wir Ihnen das gesamte Spektrum moderner Elektrotechnik –
+        für Privatpersonen, Gewerbe und Industriebetriebe.
+      </p>
+    </div>
+  </section>
+
+  <!-- Leistungen Detail -->
+  <section class="section">
+    <div class="container">
+      <div class="leistungen-list">
+        {leistungen.map((l) => (
+          <article id={l.id} class="leistung-item card">
+            <div class="leistung-header">
+              <span class="leistung-icon" aria-hidden="true">{l.icon}</span>
+              <h2 class="leistung-title">{l.title}</h2>
+            </div>
+            <p class="leistung-desc">{l.description}</p>
+            <ul class="leistung-details" role="list">
+              {l.details.map((detail) => (
+                <li class="detail-item">
+                  <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  {detail}
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA
+    heading="Interesse geweckt?"
+    text="Rufen Sie uns an oder schreiben Sie uns – wir beraten Sie kostenlos und unverbindlich."
+  />
+</PageLayout>
+
+<style>
+  .page-hero {
+    padding-block: 3rem;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .page-hero-intro {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    margin-top: 0.75rem;
+    max-width: 65ch;
+  }
+
+  .leistungen-list {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 480px), 1fr));
+  }
+
+  .leistung-item {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    scroll-margin-top: 80px;
+  }
+
+  .leistung-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .leistung-icon {
+    font-size: 1.75rem;
+    flex-shrink: 0;
+  }
+
+  .leistung-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+  }
+
+  .leistung-desc {
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  .leistung-details {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+  }
+
+  .detail-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.95rem;
+  }
+  .detail-item svg {
+    flex-shrink: 0;
+    margin-top: 3px;
+    color: var(--color-primary);
+  }
+</style>
