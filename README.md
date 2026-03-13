@@ -1,0 +1,1 @@
+# KMU-Mini-Astro-Template
