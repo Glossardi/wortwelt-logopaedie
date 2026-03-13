@@ -1,0 +1,253 @@
+---
+/**
+ * Header.astro — Site-weiter Header mit Navigation
+ *
+ * Zeigt Logo, Hauptnavigation und CTA-Button.
+ * Navigation ist vollständig über site.ts steuerbar.
+ */
+import site from "@data/site";
+import theme from "@data/theme";
+
+const navLinks = [
+  { label: "Startseite", href: "/" },
+  { label: "Leistungen", href: "/leistungen" },
+  { label: "Über uns", href: "/ueber-uns" },
+  { label: "Kontakt", href: "/kontakt" },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <!-- Logo -->
+    <a href="/" class="logo-link" aria-label={`${site.company} – Startseite`}>
+      <img
+        src={theme.logo.src}
+        alt={theme.logo.alt}
+        width={theme.logo.width}
+        height="auto"
+        class="logo"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='block'"
+      />
+      <span class="logo-text" style="display:none">{site.company}</span>
+    </a>
+
+    <!-- Skip-Link für Accessibility -->
+    <a href="#main-content" class="skip-link">Zum Inhalt springen</a>
+
+    <!-- Hauptnavigation -->
+    <nav aria-label="Hauptnavigation">
+      <ul class="nav-list" role="list">
+        {navLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class:list={["nav-link", { "nav-link--active": currentPath === link.href || (link.href !== "/" && currentPath.startsWith(link.href)) }]}
+              aria-current={currentPath === link.href ? "page" : undefined}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- CTA Button -->
+    <a href={site.cta.href} class="btn btn--primary header-cta">
+      {site.cta.label}
+    </a>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-btn" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobile-nav">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <div id="mobile-nav" class="mobile-nav" aria-hidden="true">
+    <nav aria-label="Mobile Navigation">
+      <ul role="list">
+        {navLinks.map((link) => (
+          <li>
+            <a href={link.href} class="mobile-nav-link">
+              {link.label}
+            </a>
+          </li>
+        ))}
+        <li>
+          <a href={site.cta.href} class="btn btn--primary" style="width:100%;justify-content:center">
+            {site.cta.label}
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--color-background);
+    border-bottom: 1px solid #e2e8f0;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding-block: 0.75rem;
+  }
+
+  .logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .logo {
+    height: 48px;
+    width: auto;
+  }
+
+  .logo-text {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--color-text);
+  }
+
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    z-index: 999;
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius);
+    text-decoration: none;
+  }
+  .skip-link:focus {
+    left: 1rem;
+    top: 1rem;
+  }
+
+  nav { margin-left: auto; }
+
+  .nav-list {
+    display: flex;
+    gap: 0.25rem;
+    list-style: none;
+    align-items: center;
+  }
+
+  .nav-link {
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--color-text);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+  .nav-link:hover {
+    background-color: var(--color-surface);
+    color: var(--color-primary);
+  }
+  .nav-link--active {
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+  .nav-link:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  .header-cta {
+    flex-shrink: 0;
+    white-space: nowrap;
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+  }
+
+  .mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: var(--radius);
+    margin-left: auto;
+  }
+  .mobile-menu-btn span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: var(--color-text);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  .mobile-menu-btn:focus-visible {
+    outline: 3px solid var(--color-primary);
+  }
+  .mobile-menu-btn[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .mobile-menu-btn[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+  }
+  .mobile-menu-btn[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .mobile-nav {
+    display: none;
+    padding: 1rem;
+    border-top: 1px solid #e2e8f0;
+    background-color: var(--color-background);
+  }
+  .mobile-nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .mobile-nav-link {
+    display: block;
+    padding: 0.75rem;
+    text-decoration: none;
+    color: var(--color-text);
+    font-weight: 500;
+    border-radius: var(--radius);
+  }
+  .mobile-nav-link:hover {
+    background-color: var(--color-surface);
+  }
+
+  @media (max-width: 768px) {
+    nav { display: none; }
+    .header-cta { display: none; }
+    .mobile-menu-btn { display: flex; }
+    .mobile-nav { display: block; }
+    .mobile-nav[aria-hidden="true"] { display: none; }
+  }
+</style>
+
+<script>
+  const btn = document.querySelector(".mobile-menu-btn") as HTMLButtonElement;
+  const nav = document.getElementById("mobile-nav");
+
+  btn?.addEventListener("click", () => {
+    const expanded = btn.getAttribute("aria-expanded") === "true";
+    btn.setAttribute("aria-expanded", String(!expanded));
+    if (nav) {
+      nav.setAttribute("aria-hidden", String(expanded));
+    }
+  });
+</script>

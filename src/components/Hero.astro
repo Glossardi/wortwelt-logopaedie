@@ -1,0 +1,99 @@
+---
+/**
+ * Hero.astro — Hero-Sektion
+ *
+ * Erster visueller Eindruck der Startseite. Headline, Subtext, CTAs
+ * und optional ein Hintergrundbild.
+ */
+import site from "@data/site";
+
+interface Props {
+  headline: string;
+  subheadline?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+  ctaSecondaryLabel?: string;
+  ctaSecondaryHref?: string;
+  /** Pfad zum Hintergrundbild (optional) */
+  backgroundImage?: string;
+  /** Hintergrundfarbe als Fallback */
+  backgroundColor?: string;
+}
+
+const {
+  headline,
+  subheadline,
+  ctaLabel = site.cta.label,
+  ctaHref = site.cta.href,
+  ctaSecondaryLabel = site.ctaSecondary.label,
+  ctaSecondaryHref = site.ctaSecondary.href,
+  backgroundImage,
+  backgroundColor = "var(--color-primary)",
+} = Astro.props;
+---
+
+<section
+  class="hero"
+  style={backgroundImage
+    ? `background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('${backgroundImage}'); background-size: cover; background-position: center;`
+    : `background-color: ${backgroundColor};`}
+  aria-label="Hero-Sektion"
+>
+  <div class="container hero-inner">
+    <div class="hero-content">
+      <h1 class="hero-headline">{headline}</h1>
+      {subheadline && <p class="hero-sub">{subheadline}</p>}
+      <div class="hero-actions">
+        <a href={ctaHref} class="btn btn--primary btn--lg">{ctaLabel}</a>
+        <a href={ctaSecondaryHref} class="btn btn--ghost btn--lg">{ctaSecondaryLabel}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-block: clamp(4rem, 12vw, 7rem);
+    color: #fff;
+    text-align: center;
+  }
+
+  .hero-inner {
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero-content {
+    max-width: 720px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .hero-headline {
+    color: #fff;
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    line-height: 1.15;
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: rgba(255, 255, 255, 0.88);
+    line-height: 1.6;
+    max-width: 60ch;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
+
+  .btn--lg {
+    padding: 0.9rem 2rem;
+    font-size: 1.05rem;
+  }
+</style>

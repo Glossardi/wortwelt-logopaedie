@@ -1,0 +1,63 @@
+---
+/**
+ * TrustIndicators.astro — Vertrauensindikatoren / USPs
+ *
+ * Kompakte Vorteile-Leiste. Wirkt vertrauensbildend bei lokalen Dienstleistern.
+ */
+
+interface TrustItem {
+  label: string;
+  /** SVG-Pfad oder Emoji */
+  icon?: string;
+}
+
+interface Props {
+  items: TrustItem[];
+  heading?: string;
+}
+
+const { items, heading } = Astro.props;
+---
+
+<section class="section section--surface trust-section" aria-label="Unsere Stärken">
+  <div class="container">
+    {heading && <h2 class="trust-heading text-center">{heading}</h2>}
+    <ul class="trust-grid" role="list">
+      {items.map((item) => (
+        <li class="trust-item">
+          {item.icon && <span class="trust-icon" aria-hidden="true">{item.icon}</span>}
+          <span class="trust-label">{item.label}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .trust-heading {
+    margin-bottom: 2rem;
+  }
+
+  .trust-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+    list-style: none;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--color-text);
+  }
+
+  .trust-icon {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+</style>

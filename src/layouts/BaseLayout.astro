@@ -1,0 +1,91 @@
+---
+/**
+ * BaseLayout.astro — Root Layout
+ *
+ * Injiziert Design Tokens aus theme.ts als CSS Custom Properties,
+ * lädt globale Styles, setzt Meta-Tags und umschließt jede Seite.
+ */
+import site from "@data/site";
+import theme from "@data/theme";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  /** Kanonische URL der Seite (ohne trailing slash) */
+  canonical?: string;
+  /** Open-Graph-Bild (absoluter Pfad oder URL) */
+  ogImage?: string;
+  /** robots-meta (default: "index, follow") */
+  robots?: string;
+}
+
+const {
+  title,
+  description,
+  canonical = Astro.url.href,
+  ogImage = "/images/og-default.jpg",
+  robots = "index, follow",
+} = Astro.props;
+
+const fullTitle = `${title} | ${site.company}`;
+const ogImageUrl = ogImage.startsWith("http")
+  ? ogImage
+  : `${site.url}${ogImage}`;
+
+// CSS Custom Properties aus theme.ts generieren
+const cssVars = `
+  --color-primary: ${theme.colors.primary};
+  --color-primary-dark: ${theme.colors.primaryDark};
+  --color-secondary: ${theme.colors.secondary};
+  --color-accent: ${theme.colors.accent};
+  --color-background: ${theme.colors.background};
+  --color-surface: ${theme.colors.surface};
+  --color-text: ${theme.colors.text};
+  --color-text-muted: ${theme.colors.textMuted};
+  --color-on-primary: ${theme.colors.onPrimary};
+  --font-body: ${theme.typography.fontBody};
+  --font-heading: ${theme.typography.fontHeading};
+  --size-base: ${theme.typography.sizeBase};
+  --container-max: ${theme.layout.containerMax};
+  --container-padding: ${theme.layout.containerPadding};
+  --section-spacing: ${theme.layout.sectionSpacing};
+  --radius: ${theme.border.radius};
+  --radius-lg: ${theme.border.radiusLg};
+  --shadow-sm: ${theme.shadow.sm};
+  --shadow-md: ${theme.shadow.md};
+`;
+---
+
+<!doctype html>
+<html lang={site.lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content={robots} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:locale" content="de_DE" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <!-- Sitemap -->
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <!-- Design Tokens als CSS Custom Properties -->
+    <style set:html={`html { ${cssVars} }`}></style>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

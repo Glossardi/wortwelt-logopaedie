@@ -1,0 +1,171 @@
+---
+/**
+ * index.astro — Startseite
+ *
+ * Demo-Inhalt: "Muster Elektrotechnik"
+ * Für ein neues Projekt: Inhalte in den Komponenten-Props anpassen
+ * oder aus src/data/ importieren.
+ */
+import PageLayout from "@layouts/PageLayout.astro";
+import Hero from "@components/Hero.astro";
+import ServicesGrid from "@components/ServicesGrid.astro";
+import TrustIndicators from "@components/TrustIndicators.astro";
+import AboutTeaser from "@components/AboutTeaser.astro";
+import Process from "@components/Process.astro";
+import Testimonials from "@components/Testimonials.astro";
+import FAQ from "@components/FAQ.astro";
+import CTA from "@components/CTA.astro";
+
+const services = [
+  {
+    title: "Elektroinstallation",
+    description: "Fachgerechte Neuinstallationen und Erweiterungen in Wohn- und Gewerbeimmobilien – von der Planung bis zur Abnahme.",
+    icon: "⚡",
+    href: "/leistungen#installation",
+  },
+  {
+    title: "Photovoltaik",
+    description: "Planung und Installation von Solaranlagen für Eigenheime und Gewerbe. Inklusive Netzanmeldung und Inbetriebnahme.",
+    icon: "☀️",
+    href: "/leistungen#photovoltaik",
+  },
+  {
+    title: "Hausautomation",
+    description: "Smart-Home-Lösungen für mehr Komfort, Sicherheit und Energieeffizienz – herstellerunabhängig und skalierbar.",
+    icon: "🏠",
+    href: "/leistungen#smarthome",
+  },
+  {
+    title: "Wartung & Prüfung",
+    description: "Regelmäßige DGUV-V3-Prüfungen und Wartungsverträge für Betriebe, Praxen und Vermietungsimmobilien.",
+    icon: "🔧",
+    href: "/leistungen#wartung",
+  },
+  {
+    title: "Notfallservice",
+    description: "Schnelle Hilfe bei Stromausfällen und Sicherungsdefekten – zuverlässig und unkompliziert.",
+    icon: "🚨",
+    href: "/leistungen#notfall",
+  },
+  {
+    title: "E-Mobilität",
+    description: "Installation von Wallboxen und Ladelösungen für Elektrofahrzeuge – gefördert und fachgerecht.",
+    icon: "🔌",
+    href: "/leistungen#emobility",
+  },
+];
+
+const trustItems = [
+  { icon: "✅", label: "Über 20 Jahre Erfahrung" },
+  { icon: "🏆", label: "Meisterbetrieb" },
+  { icon: "⭐", label: "4,9 / 5 Google-Bewertung" },
+  { icon: "🔒", label: "Versichert & zertifiziert" },
+  { icon: "📅", label: "Zuverlässige Terminplanung" },
+  { icon: "💬", label: "Kostenlose Erstberatung" },
+];
+
+const processSteps = [
+  {
+    number: "1",
+    title: "Kontakt aufnehmen",
+    description: "Sie rufen uns an oder schreiben eine Nachricht. Wir melden uns innerhalb eines Werktages.",
+  },
+  {
+    number: "2",
+    title: "Kostenloser Vor-Ort-Termin",
+    description: "Wir schauen uns Ihr Projekt an, besprechen Anforderungen und erstellen ein unverbindliches Angebot.",
+  },
+  {
+    number: "3",
+    title: "Fachgerechte Ausführung",
+    description: "Unser Team führt die Arbeiten termingerecht, sauber und nach allen geltenden Normen durch.",
+  },
+  {
+    number: "4",
+    title: "Abnahme & Dokumentation",
+    description: "Nach der Fertigstellung prüfen wir gemeinsam das Ergebnis und übergeben alle Dokumente.",
+  },
+];
+
+const testimonials = [
+  {
+    quote: "Absolut zuverlässig und professionell. Die Monteure waren pünktlich, sauber und haben alles erklärt. Sehr empfehlenswert!",
+    author: "Maria S.",
+    role: "Privatkundin, Musterstadt",
+  },
+  {
+    quote: "Unsere Photovoltaikanlage wurde termingerecht installiert. Der Service war erstklassig – von der Planung bis zur Inbetriebnahme.",
+    author: "Thomas K.",
+    role: "Eigenheimbesitzer",
+  },
+  {
+    quote: "Seit Jahren unser Betriebselektriker. Zuverlässig, fair kalkuliert und immer schnell erreichbar. Klare Empfehlung!",
+    author: "Sandra W.",
+    role: "Praxisinhaberin",
+  },
+];
+
+const faqItems = [
+  {
+    question: "Wie schnell erhalten ich ein Angebot?",
+    answer: "Nach Ihrem Kontakt und unserem Vor-Ort-Termin erhalten Sie in der Regel innerhalb von 2 Werktagen ein schriftliches Angebot.",
+  },
+  {
+    question: "Arbeiten Sie auch an Wochenenden?",
+    answer: "Für Notfälle sind wir auch samstags erreichbar. Reguläre Termine vergeben wir von Montag bis Freitag.",
+  },
+  {
+    question: "Welche Gebiete decken Sie ab?",
+    answer: "Wir sind hauptsächlich in Musterstadt und dem Umkreis von ca. 30 km tätig. Bei größeren Projekten sind wir flexibel.",
+  },
+  {
+    question: "Bieten Sie Wartungsverträge an?",
+    answer: "Ja, wir bieten maßgeschneiderte Wartungsverträge für Betriebe, Praxen und Mehrfamilienhäuser an – sprechen Sie uns an.",
+  },
+];
+---
+
+<PageLayout
+  title="Startseite"
+  description="Muster Elektrotechnik – Ihr zuverlässiger Elektriker in Musterstadt. Elektroinstallation, Photovoltaik, Hausautomation und mehr."
+>
+  <Hero
+    headline="Elektriker, dem Sie vertrauen können."
+    subheadline="Meisterbetrieb in Musterstadt seit über 20 Jahren. Wir installieren, warten und modernisieren – zuverlässig, sauber, termingerecht."
+  />
+
+  <TrustIndicators items={trustItems} />
+
+  <ServicesGrid
+    services={services}
+    heading="Unsere Leistungen"
+    intro="Von der einfachen Steckdose bis zur kompletten Photovoltaikanlage – wir sind Ihr Partner für alle Elektroarbeiten."
+  />
+
+  <AboutTeaser
+    heading="Handwerk mit Herz und Erfahrung"
+    text="Seit 2003 sind wir als Meisterbetrieb in Musterstadt und Umgebung tätig. Unser Team aus qualifizierten Elektrikern legt großen Wert auf saubere Arbeit, ehrliche Kommunikation und langfristige Kundenbeziehungen. Ob Privathaushalt, Gewerbe oder Industriebetrieb – wir finden die passende Lösung."
+    linkLabel="Unser Team kennenlernen"
+    linkHref="/ueber-uns"
+  />
+
+  <Process
+    steps={processSteps}
+    heading="So läuft ein Projekt ab"
+    intro="Transparent von Anfang an – so arbeiten wir mit Ihnen zusammen."
+  />
+
+  <Testimonials testimonials={testimonials} />
+
+  <FAQ
+    items={faqItems}
+    heading="Häufige Fragen"
+  />
+
+  <CTA
+    heading="Jetzt Kontakt aufnehmen"
+    text="Vereinbaren Sie einen kostenlosen Vor-Ort-Termin. Wir freuen uns auf Ihr Projekt."
+    ctaSecondaryLabel="Unsere Leistungen"
+    ctaSecondaryHref="/leistungen"
+  />
+</PageLayout>
