@@ -112,6 +112,7 @@ a:hover { color: var(--color-primary-dark); }
 }
 
 /* ─── Buttons ─────────────────────────────────────────────────────── */
+/* Shared base + semantic variants + size and disabled states */
 .btn {
   display: inline-flex;
   align-items: center;
