@@ -20,7 +20,7 @@ const socialIconMap: Record<string, string> = {
   <div class="footer__inner container">
     <div class="footer__brand">
       <a href="/" class="footer__logo" aria-label={`${site.company} — Startseite`}>
-        <img src={site.logo.src} alt={site.logo.alt} width="120" height="30" loading="lazy" />
+        {site.company}
       </a>
       <p class="footer__tagline">{site.tagline}</p>
     </div>
@@ -69,10 +69,10 @@ const socialIconMap: Record<string, string> = {
 
   .footer__logo {
     text-decoration: none;
-  }
-  .footer__logo img {
-    height: 1.75rem;
-    width: auto;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--color-text);
   }
 
   .footer__tagline {

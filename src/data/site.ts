@@ -24,13 +24,6 @@ export interface SiteData {
   /** Optionale Overrides für das gewählte Theme */
   themeOverrides?: Partial<ThemePreset>;
 
-  // Logo
-  logo: {
-    src: string;
-    alt: string;
-    width: number;
-  };
-
   // Kontakt
   contact: {
     email: string;
@@ -102,14 +95,6 @@ export interface SiteData {
     answer: string;
   }>;
 
-  // Kontaktformular
-  contactForm: {
-    /** "formspree", "mailto", oder eine CF-Worker-URL */
-    action: string;
-    /** HTTP-Methode (POST für Formspree/Worker, GET für mailto) */
-    method?: string;
-  };
-
   // Sektions-Überschriften (zentral konfigurierbar)
   sectionHeadings: {
     services: string;
@@ -135,12 +120,6 @@ const site: SiteData = {
   lang: "de",
 
   theme: "warm-craft",
-
-  logo: {
-    src: "/images/logo.svg",
-    alt: "Muster Schreinerei Logo",
-    width: 160,
-  },
 
   contact: {
     email: "info@muster-schreinerei.de",
@@ -185,7 +164,7 @@ const site: SiteData = {
     headline: "Maßgefertigte Möbel für Ihr Zuhause",
     subline:
       "Vom Entwurf bis zur Montage — Qualitätshandwerk aus Musterstadt. Persönlich, zuverlässig, maßgenau.",
-    backgroundImage: "/images/hero.jpg",
+    backgroundImage: "/images/placeholder-hero.svg",
   },
 
   // ─── Trust ─────────────────────────────────────────────────────────
@@ -245,7 +224,7 @@ const site: SiteData = {
   about: {
     heading: "Tradition trifft Moderne",
     text: "Seit über 35 Jahren steht die Muster Schreinerei für Qualitätshandwerk in Musterstadt. Als Familienbetrieb in dritter Generation verbinden wir traditionelle Handwerkstechniken mit modernen Fertigungsmethoden. Unser Team aus 8 erfahrenen Schreinern und 3 Auszubildenden arbeitet mit Leidenschaft an jedem Projekt — ob Einbauschrank oder kompletter Innenausbau.",
-    image: "/images/workshop.jpg",
+    image: "/images/placeholder-about.svg",
     imageAlt: "Werkstatt der Muster Schreinerei",
   },
 
@@ -333,13 +312,6 @@ const site: SiteData = {
         "Auf alle unsere Arbeiten geben wir 5 Jahre Garantie. Bei Fragen oder Problemen sind wir jederzeit erreichbar.",
     },
   ],
-
-  // ─── Kontaktformular ──────────────────────────────────────────────
-
-  contactForm: {
-    action: "mailto:info@muster-schreinerei.de",
-    method: "GET",
-  },
 
   // ─── Sektions-Überschriften ────────────────────────────────────────
 

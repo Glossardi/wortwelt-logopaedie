@@ -16,13 +16,7 @@ const navLinks = site.nav;
 <header class="header" id="site-header">
   <div class="header__inner container">
     <a class="header__logo" href="/" aria-label={`${site.company} — Startseite`}>
-      <img
-        src={site.logo.src}
-        alt={site.logo.alt}
-        width={site.logo.width}
-        height="40"
-        loading="eager"
-      />
+      {site.company}
     </a>
 
     <nav class="header__nav" id="main-nav" aria-label="Hauptnavigation">
@@ -89,8 +83,12 @@ const navLinks = site.nav;
   .header__logo {
     flex-shrink: 0;
     text-decoration: none;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--color-text);
+    letter-spacing: -0.01em;
   }
-  .header__logo img { height: 2rem; width: auto; }
 
   .header__nav { display: none; }
 

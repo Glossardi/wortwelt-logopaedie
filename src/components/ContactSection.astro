@@ -1,12 +1,11 @@
 ---
 /**
- * ContactSection.astro — Kontakt-Sektion mit Formular + Kontaktinfos
+ * ContactSection.astro — Kontakt-Sektion mit Kontaktdaten
  */
 import { Icon } from "astro-icon/components";
 import site from "@data/site";
 
-const { contact, openingHours, contactForm, sectionHeadings } = site;
-const isMailto = contactForm.action.startsWith("mailto:");
+const { contact, openingHours, sectionHeadings } = site;
 ---
 
 <section class="section section--surface" id="contact" aria-labelledby="contact-heading">
@@ -18,183 +17,89 @@ const isMailto = contactForm.action.startsWith("mailto:");
       )}
     </div>
 
-    <div class="contact-grid">
-      <!-- Formular -->
-      <div class="contact-form-wrap reveal">
-        <form
-          class="contact-form"
-          action={contactForm.action}
-          method={contactForm.method || "POST"}
-        >
-          <div class="form-group">
-            <label for="contact-name">Name</label>
-            <input type="text" id="contact-name" name="name" required autocomplete="name" />
-          </div>
-          <div class="form-group">
-            <label for="contact-email">E-Mail</label>
-            <input type="email" id="contact-email" name="email" required autocomplete="email" />
-          </div>
-          <div class="form-group">
-            <label for="contact-phone">Telefon <span class="optional">(optional)</span></label>
-            <input type="tel" id="contact-phone" name="phone" autocomplete="tel" />
-          </div>
-          <div class="form-group">
-            <label for="contact-message">Nachricht</label>
-            <textarea id="contact-message" name="message" rows="5" required></textarea>
-          </div>
-          <button type="submit" class="btn btn--primary btn--lg">Nachricht senden</button>
-        </form>
-      </div>
+    <div class="contact-content reveal">
+      <address class="contact-cards">
+        <a href={`tel:${contact.phone.replace(/\s/g, "")}`} class="contact-card">
+          <Icon name="lucide:phone" size={24} aria-hidden="true" />
+          <strong>Telefon</strong>
+          <span>{contact.phone}</span>
+        </a>
 
-      <!-- Kontaktinfos -->
-      <div class="contact-info reveal">
-        <address class="contact-info__block">
-          <div class="contact-info__item">
-            <Icon name="lucide:phone" size={20} aria-hidden="true" />
-            <div>
-              <strong>Telefon</strong>
-              <a href={`tel:${contact.phone.replace(/\s/g, "")}`}>{contact.phone}</a>
-            </div>
-          </div>
+        <a href={`mailto:${contact.email}`} class="contact-card">
+          <Icon name="lucide:mail" size={24} aria-hidden="true" />
+          <strong>E-Mail</strong>
+          <span>{contact.email}</span>
+        </a>
 
-          <div class="contact-info__item">
-            <Icon name="lucide:mail" size={20} aria-hidden="true" />
-            <div>
-              <strong>E-Mail</strong>
-              <a href={`mailto:${contact.email}`}>{contact.email}</a>
-            </div>
-          </div>
-
-          <div class="contact-info__item">
-            <Icon name="lucide:map-pin" size={20} aria-hidden="true" />
-            <div>
-              <strong>Adresse</strong>
-              <span>{contact.address.street}</span>
-              <span>{contact.address.zip} {contact.address.city}</span>
-            </div>
-          </div>
-        </address>
+        <div class="contact-card">
+          <Icon name="lucide:map-pin" size={24} aria-hidden="true" />
+          <strong>Adresse</strong>
+          <span>{contact.address.street}</span>
+          <span>{contact.address.zip} {contact.address.city}</span>
+        </div>
 
         {openingHours.length > 0 && (
-          <div class="contact-info__hours">
-            <div class="contact-info__item">
-              <Icon name="lucide:clock" size={20} aria-hidden="true" />
-              <div>
-                <strong>Öffnungszeiten</strong>
-                {openingHours.map((h) => (
-                  <span>{h.days}: {h.hours}</span>
-                ))}
-              </div>
-            </div>
+          <div class="contact-card">
+            <Icon name="lucide:clock" size={24} aria-hidden="true" />
+            <strong>Öffnungszeiten</strong>
+            {openingHours.map((h) => (
+              <span>{h.days}: {h.hours}</span>
+            ))}
           </div>
         )}
-      </div>
+      </address>
     </div>
   </div>
 </section>
 
 <style>
-  .contact-grid {
+  .contact-cards {
+    font-style: normal;
     display: grid;
-    gap: 3rem;
+    gap: 1.5rem;
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 700px;
+    margin-inline: auto;
   }
 
-  @media (min-width: 768px) {
-    .contact-grid {
-      grid-template-columns: 1.2fr 1fr;
-      gap: 4rem;
+  @media (max-width: 640px) {
+    .contact-cards {
+      grid-template-columns: 1fr;
     }
   }
 
-  /* Form */
-  .contact-form {
+  .contact-card {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
-  }
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.375rem;
-  }
-
-  .form-group label {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--color-text);
-  }
-  .optional {
-    font-weight: 400;
-    color: var(--color-text-muted);
-  }
-
-  .form-group input,
-  .form-group textarea {
-    padding: 0.75rem 1rem;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius);
-    font-size: 1rem;
-    font-family: var(--font-body);
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+    padding: 2rem 1.5rem;
     background: var(--color-background);
-    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    color: inherit;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
   }
-  .form-group input:focus,
-  .form-group textarea:focus {
-    outline: none;
+
+  a.contact-card:hover {
     border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 15%, transparent);
-  }
-  .form-group textarea { resize: vertical; min-height: 120px; }
-
-  /* Contact Info */
-  .contact-info {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+    box-shadow: var(--shadow-sm);
   }
 
-  .contact-info__block {
-    font-style: normal;
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-  }
-
-  .contact-info__item {
-    display: flex;
-    gap: 0.875rem;
-    align-items: flex-start;
-  }
-  .contact-info__item [data-icon] {
+  .contact-card [data-icon] {
     color: var(--color-primary);
-    margin-top: 0.125rem;
-    flex-shrink: 0;
+    margin-bottom: 0.25rem;
   }
-  .contact-info__item div {
-    display: flex;
-    flex-direction: column;
-    gap: 0.125rem;
-  }
-  .contact-info__item strong {
+
+  .contact-card strong {
     font-size: 0.9rem;
     font-weight: 600;
   }
-  .contact-info__item a,
-  .contact-info__item span {
-    font-size: 0.95rem;
-    color: var(--color-text-muted);
-  }
-  .contact-info__item a {
-    text-decoration: none;
-  }
-  .contact-info__item a:hover {
-    color: var(--color-primary);
-  }
 
-  .btn--lg {
-    padding: 0.875rem 2rem;
-    font-size: 1.05rem;
+  .contact-card span {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
   }
 </style>
