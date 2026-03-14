@@ -42,6 +42,10 @@ export interface SiteData {
     instagram?: string;
     linkedin?: string;
     youtube?: string;
+    tiktok?: string;
+    twitter?: string;
+    xing?: string;
+    github?: string;
   };
 
   // Navigation
