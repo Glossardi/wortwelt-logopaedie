@@ -16,7 +16,11 @@ const navLinks = site.nav;
 <header class="header" id="site-header">
   <div class="header__inner container">
     <a class="header__logo" href="/" aria-label={`${site.company} — Startseite`}>
-      {site.company}
+      {site.logo ? (
+        <img src={site.logo} alt={site.company} class="header__logo-img" loading="eager" decoding="async" />
+      ) : (
+        site.company
+      )}
     </a>
 
     <nav class="header__nav" id="main-nav" aria-label="Hauptnavigation">
@@ -91,6 +95,12 @@ const navLinks = site.nav;
     font-size: 1.15rem;
     color: var(--color-text);
     letter-spacing: -0.01em;
+  }
+
+  .header__logo-img {
+    height: 36px;
+    width: auto;
+    display: block;
   }
 
   /* Mobile nav — hidden by default with fade+slide animation */
@@ -178,6 +188,9 @@ const navLinks = site.nav;
   .header__toggle[aria-expanded="true"] .icon-close { display: block; }
 
   @media (min-width: 768px) {
+    .header__logo-img {
+      height: 40px;
+    }
     .header__nav {
       position: static;
       background: none;

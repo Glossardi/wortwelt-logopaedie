@@ -15,13 +15,26 @@ import type { ThemePreset } from "./themes";
 export interface SiteData {
   // Grunddaten
   company: string;
+  /** Pfad zum Logo-Bild (z.B. "/images/logo.svg"). Wenn leer, wird Firmenname als Text angezeigt. */
+  logo?: string;
   tagline: string;
   url: string;
   lang: string;
 
   // Theme-Preset (siehe themes.ts für verfügbare Presets)
   theme: string;
-  /** Optionale Overrides für das gewählte Theme */
+  /**
+   * Fonts anpassen: Setze themeOverrides.typography.fontBody und fontHeading.
+   * Beispiel für Google Fonts:
+   *   themeOverrides: {
+   *     typography: {
+   *       fontBody: "'Inter', sans-serif",
+   *       fontHeading: "'Playfair Display', serif",
+   *     }
+   *   }
+   * Vergiss nicht, den Font-Import in BaseLayout.astro hinzuzufügen:
+   *   <link href="https://fonts.googleapis.com/css2?family=Inter&family=Playfair+Display&display=swap" rel="stylesheet" />
+   */
   themeOverrides?: Partial<ThemePreset>;
 
   // Kontakt
@@ -125,6 +138,7 @@ export interface SiteData {
 
 const site: SiteData = {
   company: "Muster Schreinerei",
+  logo: "/images/logo.svg",
   tagline: "Maßgefertigte Möbel & Innenausbau in Musterstadt",
   url: "https://example.com",
   lang: "de",
@@ -184,8 +198,6 @@ const site: SiteData = {
     { icon: "calendar", label: "Seit 1985" },
     { icon: "users", label: "500+ Projekte" },
     { icon: "shield-check", label: "5 Jahre Garantie" },
-    { icon: "clock", label: "Termingerecht" },
-    { icon: "star", label: "4.9 / 5 Sterne" },
   ],
 
   // ─── Services ──────────────────────────────────────────────────────

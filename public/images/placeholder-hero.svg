@@ -1,13 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
-  <rect width="1600" height="900" fill="#78716c"/>
-  <rect x="0" y="0" width="1600" height="900" fill="url(#grain)" opacity="0.1"/>
-  <defs>
-    <pattern id="grain" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
-      <circle cx="25" cy="25" r="1" fill="#fff" opacity="0.3"/>
-      <circle cx="75" cy="50" r="1" fill="#fff" opacity="0.2"/>
-      <circle cx="50" cy="75" r="1.5" fill="#fff" opacity="0.15"/>
-    </pattern>
-  </defs>
-  <text x="800" y="440" text-anchor="middle" font-family="sans-serif" font-size="32" fill="#d6d3d1" opacity="0.6">Hero-Bild (1600 × 900)</text>
-  <text x="800" y="480" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#d6d3d1" opacity="0.4">Ersetze mit einem Kundenfoto</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <rect width="1920" height="1080" fill="#e2e8f0"/>
+  <rect x="60" y="60" width="1800" height="960" rx="12" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="8 4"/>
+  <text x="960" y="500" text-anchor="middle" font-family="system-ui, sans-serif" font-size="36" fill="#64748b">Hero-Bild ersetzen</text>
+  <text x="960" y="560" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" fill="#94a3b8">Empfohlen: 1920 × 1080 px (16:9)</text>
+  <text x="960" y="600" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" fill="#94a3b8">public/images/placeholder-hero.svg</text>
 </svg>
