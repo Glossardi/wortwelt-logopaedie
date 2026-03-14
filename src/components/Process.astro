@@ -19,7 +19,7 @@ const { process: steps, sectionHeadings } = site;
 
     <div class="process-steps">
       {steps.map((step, i) => (
-        <div class="process-step reveal">
+        <div class="process-step reveal" data-reveal-delay={String(Math.min(i + 1, 5))}>
           <div class="process-step__marker">
             <div class="process-step__icon">
               <Icon name={`lucide:${step.icon}`} size={24} aria-hidden="true" />
@@ -51,6 +51,11 @@ const { process: steps, sectionHeadings } = site;
     grid-template-columns: 4rem 1fr;
     gap: 1.25rem;
     position: relative;
+    transition: transform 0.3s ease;
+  }
+
+  .process-step:hover {
+    transform: translateY(-4px);
   }
 
   .process-step__marker {
@@ -77,7 +82,14 @@ const { process: steps, sectionHeadings } = site;
   .process-step__number {
     font-size: 0.75rem;
     font-weight: 700;
-    color: var(--color-text-muted);
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    color: var(--color-on-primary);
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .process-step__connector {
@@ -125,6 +137,13 @@ const { process: steps, sectionHeadings } = site;
     }
     .process-step__connector {
       display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .process-step {
+      transition: none !important;
+      transform: none !important;
     }
   }
 </style>

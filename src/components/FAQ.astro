@@ -47,9 +47,13 @@ const { faq, sectionHeadings } = site;
     border: 1px solid var(--color-border);
     border-radius: var(--radius);
     overflow: hidden;
-    transition: box-shadow 0.2s ease;
+    transition: box-shadow 0.2s ease, border-color 0.3s ease, background-color 0.3s ease;
   }
-  .faq-item[open] { box-shadow: var(--shadow-sm); }
+  .faq-item[open] {
+    box-shadow: var(--shadow-sm);
+    border-left: 3px solid var(--color-primary);
+    background: var(--color-surface);
+  }
 
   .faq-item__question {
     display: flex;
@@ -83,5 +87,11 @@ const { faq, sectionHeadings } = site;
     color: var(--color-text-muted);
     font-size: 0.95rem;
     line-height: 1.7;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .faq-item {
+      transition: none !important;
+    }
   }
 </style>

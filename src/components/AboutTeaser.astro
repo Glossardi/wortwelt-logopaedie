@@ -11,6 +11,7 @@ const { about, sectionHeadings } = site;
   <div class="container">
     <div class="about-grid">
       <div class="about-content reveal">
+        <div class="section-accent"></div>
         <h2 class="section-heading" id="about-heading">{sectionHeadings.about}</h2>
         <h3 class="about-title">{about.heading}</h3>
         <p class="about-text">{about.text}</p>
@@ -45,7 +46,19 @@ const { about, sectionHeadings } = site;
   .about-text {
     color: var(--color-text-muted);
     font-size: 1.05rem;
-    line-height: 1.7;
+    line-height: 1.6;
+  }
+
+  .section-accent {
+    width: 60px;
+    height: 3px;
+    background: var(--color-primary);
+    margin-bottom: 1rem;
+  }
+
+  .about-image {
+    overflow: hidden;
+    border-radius: var(--radius-lg);
   }
 
   .about-image img {
@@ -53,12 +66,24 @@ const { about, sectionHeadings } = site;
     border-radius: var(--radius-lg);
     aspect-ratio: 4 / 3;
     object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .about-image:hover img {
+    transform: scale(1.03);
   }
 
   @media (min-width: 768px) {
     .about-grid {
       grid-template-columns: 1fr 1fr;
       gap: 4rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .about-image img {
+      transition: none !important;
+      transform: none !important;
     }
   }
 </style>
