@@ -1,205 +1,121 @@
 ---
 /**
- * Footer.astro — Site-weiter Footer
- *
- * Zeigt Firmeninfo, Navigation, Kontaktdaten und rechtliche Links.
- * Alle Inhalte kommen aus site.ts.
+ * Footer.astro — Minimaler Footer mit Logo, Legal-Links und Social Icons
  */
+import { Icon } from "astro-icon/components";
 import site from "@data/site";
 
-const year = new Date().getFullYear();
+const socialLinks = Object.entries(site.social).filter(([_, url]) => url);
+const currentYear = new Date().getFullYear();
 
-const footerLinks = [
-  { label: "Startseite", href: "/" },
-  { label: "Leistungen", href: "/leistungen" },
-  { label: "Über uns", href: "/ueber-uns" },
-  { label: "Kontakt", href: "/kontakt" },
-];
-
-const legalLinks = [
-  { label: "Impressum", href: "/impressum" },
-  { label: "Datenschutz", href: "/datenschutz" },
-];
+const socialIconMap: Record<string, string> = {
+  facebook: "lucide:facebook",
+  instagram: "lucide:instagram",
+  linkedin: "lucide:linkedin",
+  youtube: "lucide:youtube",
+};
 ---
 
-<footer class="site-footer">
-  <div class="container footer-grid">
-    <!-- Firma & Tagline -->
-    <div class="footer-col">
-      <p class="footer-company">{site.company}</p>
-      <p class="footer-tagline">{site.tagline}</p>
+<footer class="footer">
+  <div class="footer__inner container">
+    <div class="footer__brand">
+      <a href="/" class="footer__logo" aria-label={`${site.company} — Startseite`}>
+        <img src={site.logo.src} alt={site.logo.alt} width="120" height="30" loading="lazy" />
+      </a>
+      <p class="footer__tagline">{site.tagline}</p>
     </div>
 
-    <!-- Navigation -->
-    <div class="footer-col">
-      <h3 class="footer-heading">Navigation</h3>
-      <ul class="footer-list" role="list">
-        {footerLinks.map((link) => (
-          <li><a href={link.href} class="footer-link">{link.label}</a></li>
+    <div class="footer__links">
+      <a href="/impressum">Impressum</a>
+      <a href="/datenschutz">Datenschutz</a>
+    </div>
+
+    {socialLinks.length > 0 && (
+      <div class="footer__social">
+        {socialLinks.map(([platform, url]) => (
+          <a
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={platform.charAt(0).toUpperCase() + platform.slice(1)}
+            class="footer__social-link"
+          >
+            <Icon name={socialIconMap[platform] || "lucide:link"} size={20} aria-hidden="true" />
+          </a>
         ))}
-      </ul>
-    </div>
-
-    <!-- Kontakt -->
-    <div class="footer-col">
-      <h3 class="footer-heading">Kontakt</h3>
-      <address class="footer-address">
-        <p>{site.contact.address.street}</p>
-        <p>{site.contact.address.zip} {site.contact.address.city}</p>
-        <p><a href={`tel:${site.contact.phone.replace(/\s/g, "")}`} class="footer-link">{site.contact.phone}</a></p>
-        <p><a href={`mailto:${site.contact.email}`} class="footer-link">{site.contact.email}</a></p>
-      </address>
-    </div>
-
-    <!-- Öffnungszeiten -->
-    {site.openingHours.length > 0 && (
-      <div class="footer-col">
-        <h3 class="footer-heading">Öffnungszeiten</h3>
-        <ul class="footer-list" role="list">
-          {site.openingHours.map((item) => (
-            <li class="hours-item">
-              <span class="hours-days">{item.days}</span>
-              <span>{item.hours}</span>
-            </li>
-          ))}
-        </ul>
       </div>
     )}
-  </div>
 
-  <!-- Bottom bar -->
-  <div class="footer-bottom">
-    <div class="container footer-bottom-inner">
-      <p class="copyright">
-        &copy; {year} {site.company}. Alle Rechte vorbehalten.
-      </p>
-      <nav aria-label="Rechtliches">
-        <ul class="legal-links" role="list">
-          {legalLinks.map((link) => (
-            <li><a href={link.href} class="footer-link">{link.label}</a></li>
-          ))}
-        </ul>
-      </nav>
-
-      <!-- Social Links -->
-      {(site.social.facebook || site.social.instagram || site.social.linkedin || site.social.xing) && (
-        <div class="social-links">
-          {site.social.facebook && (
-            <a href={site.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="social-link">
-              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
-              </svg>
-            </a>
-          )}
-          {site.social.instagram && (
-            <a href={site.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-link">
-              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-              </svg>
-            </a>
-          )}
-        </div>
-      )}
-    </div>
+    <p class="footer__copy">
+      &copy; {currentYear} {site.company}. Alle Rechte vorbehalten.
+    </p>
   </div>
 </footer>
 
 <style>
-  .site-footer {
-    background-color: var(--color-text);
-    color: #cbd5e1;
-    margin-top: auto;
+  .footer {
+    border-top: 1px solid var(--color-border);
+    padding-block: 3rem 2rem;
+    background: var(--color-surface);
   }
 
-  .footer-grid {
-    display: grid;
-    gap: 2.5rem;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
-    padding-top: 3.5rem;
-    padding-bottom: 3rem;
-  }
-
-  .footer-company {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 0.5rem;
-  }
-  .footer-tagline { font-size: 0.9rem; line-height: 1.5; }
-
-  .footer-heading {
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: #94a3b8;
-    margin-bottom: 1rem;
-    font-weight: 600;
-  }
-
-  .footer-list {
-    list-style: none;
+  .footer__inner {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .footer-link {
-    color: #cbd5e1;
-    text-decoration: none;
-    transition: color 0.15s ease;
-    font-size: 0.95rem;
-  }
-  .footer-link:hover { color: #fff; }
-  .footer-link:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
-
-  .footer-address {
-    font-style: normal;
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-    font-size: 0.95rem;
-  }
-
-  .hours-item {
-    display: flex;
-    gap: 1rem;
-    font-size: 0.9rem;
-  }
-  .hours-days { min-width: 5rem; color: #94a3b8; }
-
-  .footer-bottom {
-    border-top: 1px solid #1e293b;
-  }
-  .footer-bottom-inner {
-    display: flex;
-    flex-wrap: wrap;
     align-items: center;
-    gap: 1rem 2rem;
-    padding-block: 1.25rem;
-    font-size: 0.875rem;
+    gap: 1.5rem;
+    text-align: center;
   }
 
-  .copyright { color: #64748b; }
+  .footer__logo {
+    text-decoration: none;
+  }
+  .footer__logo img {
+    height: 1.75rem;
+    width: auto;
+  }
 
-  .legal-links {
+  .footer__tagline {
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+    margin-top: 0.375rem;
+  }
+
+  .footer__links {
     display: flex;
     gap: 1.5rem;
-    list-style: none;
-    margin-left: auto;
+  }
+  .footer__links a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.2s ease;
+  }
+  .footer__links a:hover {
+    color: var(--color-primary);
   }
 
-  .social-links {
+  .footer__social {
     display: flex;
     gap: 0.75rem;
   }
-  .social-link {
-    color: #94a3b8;
-    transition: color 0.15s ease;
+  .footer__social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    color: var(--color-text-muted);
+    transition: color 0.2s ease, background-color 0.2s ease;
   }
-  .social-link:hover { color: #fff; }
+  .footer__social-link:hover {
+    color: var(--color-primary);
+    background: var(--color-background);
+  }
 
-  @media (max-width: 600px) {
-    .footer-bottom-inner { flex-direction: column; align-items: flex-start; }
-    .legal-links { margin-left: 0; }
+  .footer__copy {
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
   }
 </style>

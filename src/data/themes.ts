@@ -1,0 +1,206 @@
+/**
+ * themes.ts — Vorgefertigte Design-Presets
+ *
+ * Jedes Preset definiert Farben, Typografie und Layout-Werte.
+ * In site.ts wählt man einfach: theme: "warm-craft" — fertig.
+ * Individuelle Overrides sind optional möglich.
+ */
+
+export interface ThemePreset {
+  colors: {
+    primary: string;
+    primaryDark: string;
+    secondary: string;
+    accent: string;
+    background: string;
+    surface: string;
+    text: string;
+    textMuted: string;
+    onPrimary: string;
+    border: string;
+  };
+  typography: {
+    fontBody: string;
+    fontHeading: string;
+    sizeBase: string;
+  };
+  layout: {
+    containerMax: string;
+    containerPadding: string;
+    sectionSpacing: string;
+  };
+  border: {
+    radius: string;
+    radiusLg: string;
+  };
+  shadow: {
+    sm: string;
+    md: string;
+  };
+}
+
+const systemFont =
+  "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
+
+const baseLayout: ThemePreset["layout"] = {
+  containerMax: "1120px",
+  containerPadding: "1.25rem",
+  sectionSpacing: "5rem",
+};
+
+const baseBorder: ThemePreset["border"] = {
+  radius: "0.5rem",
+  radiusLg: "1rem",
+};
+
+const baseShadow: ThemePreset["shadow"] = {
+  sm: "0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.08)",
+  md: "0 4px 12px -2px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.06)",
+};
+
+export const themes: Record<string, ThemePreset> = {
+  /** Seriöses Blau — Handwerk, Dienstleister, Beratung */
+  "professional-blue": {
+    colors: {
+      primary: "#2563eb",
+      primaryDark: "#1d4ed8",
+      secondary: "#f0f4ff",
+      accent: "#f59e0b",
+      background: "#ffffff",
+      surface: "#f8fafc",
+      text: "#0f172a",
+      textMuted: "#64748b",
+      onPrimary: "#ffffff",
+      border: "#e2e8f0",
+    },
+    typography: {
+      fontBody: systemFont,
+      fontHeading: systemFont,
+      sizeBase: "16px",
+    },
+    layout: baseLayout,
+    border: baseBorder,
+    shadow: baseShadow,
+  },
+
+  /** Warme Töne — Schreinerei, Bäckerei, Handwerk */
+  "warm-craft": {
+    colors: {
+      primary: "#b45309",
+      primaryDark: "#92400e",
+      secondary: "#fef3c7",
+      accent: "#d97706",
+      background: "#fffbf5",
+      surface: "#fef9f0",
+      text: "#1c1917",
+      textMuted: "#78716c",
+      onPrimary: "#ffffff",
+      border: "#e7e5e4",
+    },
+    typography: {
+      fontBody: "'Georgia', 'Times New Roman', serif",
+      fontHeading: systemFont,
+      sizeBase: "16px",
+    },
+    layout: baseLayout,
+    border: { radius: "0.375rem", radiusLg: "0.75rem" },
+    shadow: baseShadow,
+  },
+
+  /** Frisches Grün — Gesundheit, Natur, Bio, Gartenbau */
+  "fresh-green": {
+    colors: {
+      primary: "#16a34a",
+      primaryDark: "#15803d",
+      secondary: "#f0fdf4",
+      accent: "#0d9488",
+      background: "#ffffff",
+      surface: "#f0fdf4",
+      text: "#0f172a",
+      textMuted: "#64748b",
+      onPrimary: "#ffffff",
+      border: "#d1e7dd",
+    },
+    typography: {
+      fontBody: systemFont,
+      fontHeading: systemFont,
+      sizeBase: "16px",
+    },
+    layout: baseLayout,
+    border: baseBorder,
+    shadow: baseShadow,
+  },
+
+  /** Elegantes Dunkel — Premium, Fotografie, Architektur */
+  "elegant-dark": {
+    colors: {
+      primary: "#a78bfa",
+      primaryDark: "#8b5cf6",
+      secondary: "#1e1b2e",
+      accent: "#f472b6",
+      background: "#0f0d1a",
+      surface: "#1a1726",
+      text: "#f1f0f5",
+      textMuted: "#9ca3af",
+      onPrimary: "#0f0d1a",
+      border: "#2d2a3e",
+    },
+    typography: {
+      fontBody: systemFont,
+      fontHeading: systemFont,
+      sizeBase: "16px",
+    },
+    layout: baseLayout,
+    border: { radius: "0.75rem", radiusLg: "1.25rem" },
+    shadow: {
+      sm: "0 1px 3px 0 rgb(0 0 0 / 0.3), 0 1px 2px -1px rgb(0 0 0 / 0.3)",
+      md: "0 4px 12px -2px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.3)",
+    },
+  },
+
+  /** Minimalistisch — Clean, modern, universell */
+  "minimal-mono": {
+    colors: {
+      primary: "#18181b",
+      primaryDark: "#09090b",
+      secondary: "#f4f4f5",
+      accent: "#18181b",
+      background: "#ffffff",
+      surface: "#fafafa",
+      text: "#18181b",
+      textMuted: "#71717a",
+      onPrimary: "#ffffff",
+      border: "#e4e4e7",
+    },
+    typography: {
+      fontBody: systemFont,
+      fontHeading: systemFont,
+      sizeBase: "16px",
+    },
+    layout: baseLayout,
+    border: { radius: "0.25rem", radiusLg: "0.5rem" },
+    shadow: {
+      sm: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+      md: "0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.05)",
+    },
+  },
+};
+
+/** Resolved theme: preset merged with optional overrides */
+export function resolveTheme(
+  presetName: string,
+  overrides?: Partial<ThemePreset>,
+): ThemePreset {
+  const base = themes[presetName] ?? themes["professional-blue"];
+  if (!overrides) return base;
+
+  return {
+    colors: { ...base.colors, ...overrides.colors },
+    typography: { ...base.typography, ...overrides.typography },
+    layout: { ...base.layout, ...overrides.layout },
+    border: { ...base.border, ...overrides.border },
+    shadow: { ...base.shadow, ...overrides.shadow },
+  };
+}
+
+export default themes;

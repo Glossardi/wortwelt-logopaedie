@@ -1,171 +1,93 @@
 ---
 /**
- * index.astro — Startseite
+ * index.astro — OnePager
  *
- * Demo-Inhalt: "Muster Elektrotechnik"
- * Für ein neues Projekt: Inhalte in den Komponenten-Props anpassen
- * oder aus src/data/ importieren.
+ * Alle Sektionen werden hier zusammengeführt.
+ * Inhalte kommen aus src/data/site.ts.
  */
 import PageLayout from "@layouts/PageLayout.astro";
 import Hero from "@components/Hero.astro";
+import TrustBar from "@components/TrustBar.astro";
 import ServicesGrid from "@components/ServicesGrid.astro";
-import TrustIndicators from "@components/TrustIndicators.astro";
 import AboutTeaser from "@components/AboutTeaser.astro";
 import Process from "@components/Process.astro";
 import Testimonials from "@components/Testimonials.astro";
 import FAQ from "@components/FAQ.astro";
-import CTA from "@components/CTA.astro";
-
-const services = [
-  {
-    title: "Elektroinstallation",
-    description: "Fachgerechte Neuinstallationen und Erweiterungen in Wohn- und Gewerbeimmobilien – von der Planung bis zur Abnahme.",
-    icon: "⚡",
-    href: "/leistungen#installation",
-  },
-  {
-    title: "Photovoltaik",
-    description: "Planung und Installation von Solaranlagen für Eigenheime und Gewerbe. Inklusive Netzanmeldung und Inbetriebnahme.",
-    icon: "☀️",
-    href: "/leistungen#photovoltaik",
-  },
-  {
-    title: "Hausautomation",
-    description: "Smart-Home-Lösungen für mehr Komfort, Sicherheit und Energieeffizienz – herstellerunabhängig und skalierbar.",
-    icon: "🏠",
-    href: "/leistungen#smarthome",
-  },
-  {
-    title: "Wartung & Prüfung",
-    description: "Regelmäßige DGUV-V3-Prüfungen und Wartungsverträge für Betriebe, Praxen und Vermietungsimmobilien.",
-    icon: "🔧",
-    href: "/leistungen#wartung",
-  },
-  {
-    title: "Notfallservice",
-    description: "Schnelle Hilfe bei Stromausfällen und Sicherungsdefekten – zuverlässig und unkompliziert.",
-    icon: "🚨",
-    href: "/leistungen#notfall",
-  },
-  {
-    title: "E-Mobilität",
-    description: "Installation von Wallboxen und Ladelösungen für Elektrofahrzeuge – gefördert und fachgerecht.",
-    icon: "🔌",
-    href: "/leistungen#emobility",
-  },
-];
-
-const trustItems = [
-  { icon: "✅", label: "Über 20 Jahre Erfahrung" },
-  { icon: "🏆", label: "Meisterbetrieb" },
-  { icon: "⭐", label: "4,9 / 5 Google-Bewertung" },
-  { icon: "🔒", label: "Versichert & zertifiziert" },
-  { icon: "📅", label: "Zuverlässige Terminplanung" },
-  { icon: "💬", label: "Kostenlose Erstberatung" },
-];
-
-const processSteps = [
-  {
-    number: "1",
-    title: "Kontakt aufnehmen",
-    description: "Sie rufen uns an oder schreiben eine Nachricht. Wir melden uns innerhalb eines Werktages.",
-  },
-  {
-    number: "2",
-    title: "Kostenloser Vor-Ort-Termin",
-    description: "Wir schauen uns Ihr Projekt an, besprechen Anforderungen und erstellen ein unverbindliches Angebot.",
-  },
-  {
-    number: "3",
-    title: "Fachgerechte Ausführung",
-    description: "Unser Team führt die Arbeiten termingerecht, sauber und nach allen geltenden Normen durch.",
-  },
-  {
-    number: "4",
-    title: "Abnahme & Dokumentation",
-    description: "Nach der Fertigstellung prüfen wir gemeinsam das Ergebnis und übergeben alle Dokumente.",
-  },
-];
-
-const testimonials = [
-  {
-    quote: "Absolut zuverlässig und professionell. Die Monteure waren pünktlich, sauber und haben alles erklärt. Sehr empfehlenswert!",
-    author: "Maria S.",
-    role: "Privatkundin, Musterstadt",
-  },
-  {
-    quote: "Unsere Photovoltaikanlage wurde termingerecht installiert. Der Service war erstklassig – von der Planung bis zur Inbetriebnahme.",
-    author: "Thomas K.",
-    role: "Eigenheimbesitzer",
-  },
-  {
-    quote: "Seit Jahren unser Betriebselektriker. Zuverlässig, fair kalkuliert und immer schnell erreichbar. Klare Empfehlung!",
-    author: "Sandra W.",
-    role: "Praxisinhaberin",
-  },
-];
-
-const faqItems = [
-  {
-    question: "Wie schnell erhalte ich ein Angebot?",
-    answer: "Nach Ihrem Kontakt und unserem Vor-Ort-Termin erhalten Sie in der Regel innerhalb von 2 Werktagen ein schriftliches Angebot.",
-  },
-  {
-    question: "Arbeiten Sie auch an Wochenenden?",
-    answer: "Für Notfälle sind wir auch samstags erreichbar. Reguläre Termine vergeben wir von Montag bis Freitag.",
-  },
-  {
-    question: "Welche Gebiete decken Sie ab?",
-    answer: "Wir sind hauptsächlich in Musterstadt und dem Umkreis von ca. 30 km tätig. Bei größeren Projekten sind wir flexibel.",
-  },
-  {
-    question: "Bieten Sie Wartungsverträge an?",
-    answer: "Ja, wir bieten maßgeschneiderte Wartungsverträge für Betriebe, Praxen und Mehrfamilienhäuser an – sprechen Sie uns an.",
-  },
-];
+import ContactSection from "@components/ContactSection.astro";
+import site from "@data/site";
 ---
 
-<PageLayout
-  title="Startseite"
-  description="Muster Elektrotechnik – Ihr zuverlässiger Elektriker in Musterstadt. Elektroinstallation, Photovoltaik, Hausautomation und mehr."
->
-  <Hero
-    headline="Elektriker, dem Sie vertrauen können."
-    subheadline="Meisterbetrieb in Musterstadt seit über 20 Jahren. Wir installieren, warten und modernisieren – zuverlässig, sauber, termingerecht."
-  />
-
-  <TrustIndicators items={trustItems} />
-
-  <ServicesGrid
-    services={services}
-    heading="Unsere Leistungen"
-    intro="Von der einfachen Steckdose bis zur kompletten Photovoltaikanlage – wir sind Ihr Partner für alle Elektroarbeiten."
-  />
-
-  <AboutTeaser
-    heading="Handwerk mit Herz und Erfahrung"
-    text="Seit 2003 sind wir als Meisterbetrieb in Musterstadt und Umgebung tätig. Unser Team aus qualifizierten Elektrikern legt großen Wert auf saubere Arbeit, ehrliche Kommunikation und langfristige Kundenbeziehungen. Ob Privathaushalt, Gewerbe oder Industriebetrieb – wir finden die passende Lösung."
-    linkLabel="Unser Team kennenlernen"
-    linkHref="/ueber-uns"
-  />
-
-  <Process
-    steps={processSteps}
-    heading="So läuft ein Projekt ab"
-    intro="Transparent von Anfang an – so arbeiten wir mit Ihnen zusammen."
-  />
-
-  <Testimonials testimonials={testimonials} />
-
-  <FAQ
-    items={faqItems}
-    heading="Häufige Fragen"
-  />
-
-  <CTA
-    heading="Jetzt Kontakt aufnehmen"
-    text="Vereinbaren Sie einen kostenlosen Vor-Ort-Termin. Wir freuen uns auf Ihr Projekt."
-    ctaSecondaryLabel="Unsere Leistungen"
-    ctaSecondaryHref="/leistungen"
-  />
+<PageLayout title="Startseite" description={site.tagline}>
+  <Hero />
+  <TrustBar />
+  <ServicesGrid />
+  <AboutTeaser />
+  <Process />
+  <Testimonials />
+  <FAQ />
+  <ContactSection />
 </PageLayout>
+
+<!-- Scroll Animations -->
+<script>
+  const reveals = document.querySelectorAll(".reveal");
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (!prefersReducedMotion && reveals.length > 0) {
+    reveals.forEach((el) => el.classList.add("reveal--hidden"));
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("reveal--visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+    );
+
+    reveals.forEach((el) => observer.observe(el));
+  }
+</script>
+
+<style is:global>
+  /* Initial animation state */
+  .animate-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeSlideUp 0.6s ease forwards;
+  }
+  .animate-in--delay-1 { animation-delay: 0.15s; }
+  .animate-in--delay-2 { animation-delay: 0.3s; }
+
+  @keyframes fadeSlideUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Scroll reveal */
+  .reveal--hidden {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal--visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-in,
+    .reveal--hidden {
+      opacity: 1;
+      transform: none;
+      animation: none;
+      transition: none;
+    }
+  }
+</style>

@@ -1,86 +1,64 @@
 ---
 /**
- * AboutTeaser.astro — Über-uns-Teaser auf der Startseite
- *
- * Kurze Selbstvorstellung mit optionalem Bild und Link zur Über-uns-Seite.
+ * AboutTeaser.astro — Kurzvorstellung mit optionalem Bild
  */
+import site from "@data/site";
 
-interface Props {
-  heading: string;
-  text: string;
-  image?: string;
-  imageAlt?: string;
-  linkLabel?: string;
-  linkHref?: string;
-}
-
-const {
-  heading,
-  text,
-  image,
-  imageAlt = "",
-  linkLabel = "Mehr über uns erfahren",
-  linkHref = "/ueber-uns",
-} = Astro.props;
+const { about, sectionHeadings } = site;
 ---
 
-<section class="section about-teaser" aria-labelledby="about-teaser-heading">
-  <div class="container about-inner">
-    {image && (
-      <div class="about-image-wrap">
-        <img
-          src={image}
-          alt={imageAlt}
-          class="about-image"
-          width="500"
-          height="400"
-          loading="lazy"
-          decoding="async"
-        />
+<section class="section section--surface" id="about" aria-labelledby="about-heading">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-content reveal">
+        <h2 class="section-heading" id="about-heading">{sectionHeadings.about}</h2>
+        <h3 class="about-title">{about.heading}</h3>
+        <p class="about-text">{about.text}</p>
       </div>
-    )}
-    <div class="about-content">
-      <h2 id="about-teaser-heading">{heading}</h2>
-      <p class="about-text">{text}</p>
-      <a href={linkHref} class="btn btn--outline">{linkLabel}</a>
+      {about.image && (
+        <div class="about-image reveal">
+          <img
+            src={about.image}
+            alt={about.imageAlt || ""}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      )}
     </div>
   </div>
 </section>
 
 <style>
-  .about-inner {
+  .about-grid {
     display: grid;
     gap: 3rem;
     align-items: center;
   }
 
-  @media (min-width: 768px) {
-    .about-inner {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-
-  .about-image-wrap {
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-  }
-
-  .about-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-
-  .about-content {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
+  .about-title {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    margin-bottom: 1rem;
+    color: var(--color-primary);
   }
 
   .about-text {
     color: var(--color-text-muted);
-    line-height: 1.7;
     font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  .about-image img {
+    width: 100%;
+    border-radius: var(--radius-lg);
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  @media (min-width: 768px) {
+    .about-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
   }
 </style>

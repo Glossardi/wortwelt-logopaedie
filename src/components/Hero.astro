@@ -1,99 +1,110 @@
 ---
 /**
- * Hero.astro — Hero-Sektion
- *
- * Erster visueller Eindruck der Startseite. Headline, Subtext, CTAs
- * und optional ein Hintergrundbild.
+ * Hero.astro — Hero-Sektion mit Headline, Subline und CTAs
  */
 import site from "@data/site";
 
-interface Props {
-  headline: string;
-  subheadline?: string;
-  ctaLabel?: string;
-  ctaHref?: string;
-  ctaSecondaryLabel?: string;
-  ctaSecondaryHref?: string;
-  /** Pfad zum Hintergrundbild (optional) */
-  backgroundImage?: string;
-  /** Hintergrundfarbe als Fallback */
-  backgroundColor?: string;
-}
-
-const {
-  headline,
-  subheadline,
-  ctaLabel = site.cta.label,
-  ctaHref = site.cta.href,
-  ctaSecondaryLabel = site.ctaSecondary.label,
-  ctaSecondaryHref = site.ctaSecondary.href,
-  backgroundImage,
-  backgroundColor = "var(--color-primary)",
-} = Astro.props;
+const { hero, cta, ctaSecondary } = site;
+const hasBackground = !!hero.backgroundImage;
 ---
 
-<section
-  class="hero"
-  style={backgroundImage
-    ? `background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('${backgroundImage}'); background-size: cover; background-position: center;`
-    : `background-color: ${backgroundColor};`}
-  aria-label="Hero-Sektion"
->
-  <div class="container hero-inner">
-    <div class="hero-content">
-      <h1 class="hero-headline">{headline}</h1>
-      {subheadline && <p class="hero-sub">{subheadline}</p>}
-      <div class="hero-actions">
-        <a href={ctaHref} class="btn btn--primary btn--lg">{ctaLabel}</a>
-        <a href={ctaSecondaryHref} class="btn btn--ghost btn--lg">{ctaSecondaryLabel}</a>
-      </div>
+<section class="hero" class:list={[{ "hero--with-bg": hasBackground }]}>
+  {hasBackground && (
+    <div class="hero__bg">
+      <img src={hero.backgroundImage} alt="" loading="eager" />
+    </div>
+  )}
+  <div class="hero__content container">
+    <h1 class="hero__headline animate-in">{hero.headline}</h1>
+    <p class="hero__subline animate-in animate-in--delay-1">{hero.subline}</p>
+    <div class="hero__actions animate-in animate-in--delay-2">
+      <a class="btn btn--primary btn--lg" href={cta.href}>{cta.label}</a>
+      <a class="btn btn--outline btn--lg" href={ctaSecondary.href}>{ctaSecondary.label}</a>
     </div>
   </div>
 </section>
 
 <style>
   .hero {
-    padding-block: clamp(4rem, 12vw, 7rem);
-    color: #fff;
-    text-align: center;
-  }
-
-  .hero-inner {
+    position: relative;
     display: flex;
-    justify-content: center;
-  }
-
-  .hero-content {
-    max-width: 720px;
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
+    min-height: 85vh;
+    padding-block: 6rem 4rem;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-background) 100%);
   }
 
-  .hero-headline {
+  .hero--with-bg {
+    background: none;
     color: #fff;
-    font-size: clamp(2rem, 5vw, 3.25rem);
-    line-height: 1.15;
   }
 
-  .hero-sub {
-    font-size: clamp(1rem, 2.5vw, 1.25rem);
-    color: rgba(255, 255, 255, 0.88);
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .hero__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .hero__bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.35) 100%);
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+  }
+
+  .hero__headline {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.1;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.25rem;
+  }
+  .hero--with-bg .hero__headline { color: #fff; }
+
+  .hero__subline {
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
     line-height: 1.6;
-    max-width: 60ch;
+    color: var(--color-text-muted);
+    max-width: 560px;
+    margin-bottom: 2rem;
   }
+  .hero--with-bg .hero__subline { color: rgba(255, 255, 255, 0.9); }
 
-  .hero-actions {
+  .hero__actions {
     display: flex;
-    gap: 1rem;
     flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 0.5rem;
+    gap: 0.75rem;
   }
 
   .btn--lg {
-    padding: 0.9rem 2rem;
+    padding: 0.875rem 2rem;
     font-size: 1.05rem;
+  }
+
+  .hero--with-bg .btn--outline {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.6);
+  }
+  .hero--with-bg .btn--outline:hover {
+    background: #fff;
+    color: var(--color-text);
+    border-color: #fff;
+  }
+
+  @media (max-width: 640px) {
+    .hero { min-height: 70vh; padding-block: 4rem 3rem; }
+    .hero__actions { flex-direction: column; }
+    .btn--lg { width: 100%; justify-content: center; }
   }
 </style>

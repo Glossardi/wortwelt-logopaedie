@@ -2,7 +2,7 @@
 /**
  * BaseLayout.astro — Root Layout
  *
- * Injiziert Design Tokens aus theme.ts als CSS Custom Properties,
+ * Injiziert Design Tokens aus dem Theme-System als CSS Custom Properties,
  * lädt globale Styles, setzt Meta-Tags und umschließt jede Seite.
  */
 import site from "@data/site";
@@ -12,11 +12,8 @@ import "../styles/global.css";
 interface Props {
   title: string;
   description: string;
-  /** Kanonische URL der Seite (ohne trailing slash) */
   canonical?: string;
-  /** Open-Graph-Bild (absoluter Pfad oder URL) */
   ogImage?: string;
-  /** robots-meta (default: "index, follow") */
   robots?: string;
 }
 
@@ -33,7 +30,6 @@ const ogImageUrl = ogImage.startsWith("http")
   ? ogImage
   : `${site.url}${ogImage}`;
 
-// CSS Custom Properties aus theme.ts generieren
 const cssVars = `
   --color-primary: ${theme.colors.primary};
   --color-primary-dark: ${theme.colors.primaryDark};
@@ -44,6 +40,7 @@ const cssVars = `
   --color-text: ${theme.colors.text};
   --color-text-muted: ${theme.colors.textMuted};
   --color-on-primary: ${theme.colors.onPrimary};
+  --color-border: ${theme.colors.border};
   --font-body: ${theme.typography.fontBody};
   --font-heading: ${theme.typography.fontHeading};
   --size-base: ${theme.typography.sizeBase};

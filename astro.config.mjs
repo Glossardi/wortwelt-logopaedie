@@ -3,6 +3,7 @@
 
 import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
+import icon from "astro-icon";
 
 export default defineConfig({
   // Set to your production domain before going live
@@ -12,6 +13,7 @@ export default defineConfig({
   output: "static",
 
   integrations: [
-    sitemap(), // generates /sitemap-index.xml automatically
+    sitemap(),
+    icon(),
   ],
 });
