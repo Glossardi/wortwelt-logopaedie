@@ -5,6 +5,8 @@ import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 import icon from "astro-icon";
 
+import cloudflare from "@astrojs/cloudflare";
+
 export default defineConfig({
   // Set to your production domain before going live
   site: "https://wortwelt-logopaedie.de",
@@ -16,4 +18,6 @@ export default defineConfig({
     sitemap(),
     icon(),
   ],
+
+  adapter: cloudflare(),
 });
