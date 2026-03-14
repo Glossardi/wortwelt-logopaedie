@@ -216,6 +216,7 @@ const site: SiteData = {
     headline: "Ihre Stimme verdient die beste Betreuung",
     subline:
       "Logopädische Therapie für Kinder und Erwachsene in Berlin-Treptow. Einfühlsam, evidenzbasiert und auf Ihre individuellen Bedürfnisse abgestimmt — auch als Hausbesuch.",
+    // Note: Image imported directly in Hero.astro for build-time optimization
     backgroundImage: "/images/hero.jpg",
   },
 
@@ -268,6 +269,7 @@ const site: SiteData = {
   about: {
     heading: "Sprache verbindet — Wortwelt begleitet",
     text: "Die Wortwelt Logopädie in Berlin-Treptow steht für einfühlsame und evidenzbasierte Sprachtherapie. Unter der Leitung von Alphan Elduran bieten wir individuelle Behandlungskonzepte für Kinder und Erwachsene. In unserer modernen Praxis in der Kiefholzstraße schaffen wir eine vertrauensvolle Atmosphäre, in der sich unsere Patienten wohlfühlen und optimale Therapieerfolge erzielen. Ob Sprachentwicklung, Stimmtherapie oder Rehabilitation nach Schlaganfall — wir begleiten Sie auf Ihrem Weg zu besserer Kommunikation.",
+    // Note: Image imported directly in AboutTeaser.astro for build-time optimization
     image: "/images/about.jpg",
     imageAlt: "Therapeutin notiert während einer einfühlsamen Therapiesitzung in der Wortwelt Logopädie",
   },

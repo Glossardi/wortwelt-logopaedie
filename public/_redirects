@@ -1,0 +1,3 @@
+# Cloudflare Pages redirects
+# www→non-www handled via CF DNS custom domain settings
+# Add path redirects here if old URLs need forwarding

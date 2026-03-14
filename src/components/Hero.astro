@@ -3,9 +3,11 @@
  * Hero.astro — Hero-Sektion mit Headline, Subline und CTAs
  */
 import site from "@data/site";
+import { Image } from "astro:assets";
+import heroImage from "../assets/images/hero.jpg";
 
 const { hero, cta, ctaSecondary } = site;
-const hasBackground = !!hero.backgroundImage;
+const hasBackground = !!heroImage;
 ---
 
 <section
@@ -16,7 +18,16 @@ const hasBackground = !!hero.backgroundImage;
 >
   {hasBackground && (
     <div class="hero__bg">
-      <img src={hero.backgroundImage} alt="" loading="eager" />
+      <Image
+        src={heroImage}
+        alt=""
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
+        format="webp"
+        quality={80}
+        class="hero__bg-image"
+      />
     </div>
   )}
   <div class="hero__content container">
