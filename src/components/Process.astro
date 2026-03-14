@@ -19,7 +19,7 @@ const { process: steps, sectionHeadings } = site;
 
     <div class="process-steps">
       {steps.map((step, i) => (
-        <div class="process-step reveal" data-reveal-delay={String(Math.min(i + 1, 5))}>
+        <div class="process-step reveal" data-reveal-delay={(i % 3) + 1}>
           <div class="process-step__marker">
             <div class="process-step__icon">
               <Icon name={`lucide:${step.icon}`} size={24} aria-hidden="true" />
@@ -39,8 +39,11 @@ const { process: steps, sectionHeadings } = site;
 
 <style>
   .process-steps {
+    --_step-gap: 2rem;
+    --_marker-col: 4rem;
+    --_icon-size: 3.25rem;
     display: grid;
-    gap: 2rem;
+    gap: var(--_step-gap);
     grid-template-columns: 1fr;
     max-width: 600px;
     margin-inline: auto;
@@ -48,10 +51,10 @@ const { process: steps, sectionHeadings } = site;
 
   .process-step {
     display: grid;
-    grid-template-columns: 4rem 1fr;
+    grid-template-columns: var(--_marker-col) 1fr;
     gap: 1.25rem;
     position: relative;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .process-step:hover {
@@ -68,8 +71,8 @@ const { process: steps, sectionHeadings } = site;
   }
 
   .process-step__icon {
-    width: 3.25rem;
-    height: 3.25rem;
+    width: var(--_icon-size);
+    height: var(--_icon-size);
     border-radius: 50%;
     background: var(--color-primary);
     color: var(--color-on-primary);
@@ -94,9 +97,9 @@ const { process: steps, sectionHeadings } = site;
 
   .process-step__connector {
     position: absolute;
-    left: 2rem;
-    top: 3.75rem;
-    bottom: -1.25rem;
+    left: calc(var(--_marker-col) / 2);
+    top: calc(var(--_icon-size) + 0.5rem);
+    bottom: calc(var(--_step-gap) * -0.625);
     width: 2px;
     background: var(--color-border);
     transform: translateX(-50%);
@@ -142,8 +145,10 @@ const { process: steps, sectionHeadings } = site;
 
   @media (prefers-reduced-motion: reduce) {
     .process-step {
-      transition: none !important;
-      transform: none !important;
+      transition: none;
+    }
+    .process-step:hover {
+      transform: none;
     }
   }
 </style>
