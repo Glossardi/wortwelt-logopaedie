@@ -234,11 +234,10 @@ a:hover { color: var(--color-primary-dark); }
 }
 
 .section-intro {
-  font-size: 1.1rem;
-  max-width: 65ch;
   color: var(--color-text-muted);
-  margin-top: 0.5rem;
+  font-size: 1.1rem;
   margin-bottom: 2.5rem;
+  max-width: 65ch;
 }
 
 .section-header {
@@ -247,16 +246,6 @@ a:hover { color: var(--color-primary-dark); }
 
 .section-header.centered {
   text-align: center;
-}
-
-.section-header.centered::after {
-  content: "";
-  display: block;
-  width: 60px;
-  height: 3px;
-  background: var(--color-primary);
-  margin: 0.75rem auto 0;
-  border-radius: 2px;
 }
 
 .section-header.centered .section-intro {

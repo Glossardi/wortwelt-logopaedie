@@ -110,10 +110,17 @@ const { contact, openingHours, sectionHeadings } = site;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .contact-card,
+    .contact-card {
+      transition: none;
+    }
+    .contact-card:hover {
+      transform: none;
+    }
     .contact-card [data-icon] {
-      transition: none !important;
-      transform: none !important;
+      transition: none;
+    }
+    .contact-card:hover [data-icon] {
+      transform: none;
     }
   }
 </style>
