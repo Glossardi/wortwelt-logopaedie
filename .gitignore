@@ -16,6 +16,10 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
+# Lock files (nur pnpm-lock.yaml committen)
+package-lock.json
+yarn.lock
+
 # OS
 .DS_Store
 Thumbs.db
