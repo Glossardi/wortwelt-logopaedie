@@ -67,17 +67,17 @@ h3 {
 }
 
 h4 {
-  font-size: clamp(1.1rem, 2vw, 1.25rem);
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
   font-weight: var(--font-weight-semibold);
 }
 
 h5 {
-  font-size: clamp(1rem, 1.5vw, 1.125rem);
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
   font-weight: var(--font-weight-medium);
 }
 
 h6 {
-  font-size: clamp(0.875rem, 1.25vw, 1rem);
+  font-size: clamp(0.9375rem, 1.4vw, 1.125rem);
   font-weight: var(--font-weight-medium);
 }
 
@@ -234,10 +234,11 @@ a:hover { color: var(--color-primary-dark); }
 }
 
 .section-intro {
-  color: var(--color-text-muted);
   font-size: 1.1rem;
-  margin-bottom: 2.5rem;
   max-width: 65ch;
+  color: var(--color-text-muted);
+  margin-top: 0.5rem;
+  margin-bottom: 2.5rem;
 }
 
 .section-header {
@@ -246,6 +247,16 @@ a:hover { color: var(--color-primary-dark); }
 
 .section-header.centered {
   text-align: center;
+}
+
+.section-header.centered::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--color-primary);
+  margin: 0.75rem auto 0;
+  border-radius: 2px;
 }
 
 .section-header.centered .section-intro {

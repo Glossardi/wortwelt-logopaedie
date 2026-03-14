@@ -14,13 +14,16 @@ import Process from "@components/Process.astro";
 import Testimonials from "@components/Testimonials.astro";
 import FAQ from "@components/FAQ.astro";
 import ContactSection from "@components/ContactSection.astro";
+import SectionDivider from "@components/SectionDivider.astro";
 import site from "@data/site";
 ---
 
 <PageLayout title="Startseite" description={site.tagline}>
   <Hero />
+  <SectionDivider variant="wave" fillColor="var(--color-surface)" />
   <TrustBar />
   <ServicesGrid />
+  <SectionDivider variant="curve" fillColor="var(--color-background)" />
   <AboutTeaser />
   <Process />
   <Testimonials />
