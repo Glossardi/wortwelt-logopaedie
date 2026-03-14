@@ -46,21 +46,10 @@ const items = site.trustItems;
     padding: 0.75rem 1.25rem;
     background: var(--color-background);
     border-radius: var(--radius);
-    transition: box-shadow 0.2s ease;
-  }
-
-  .trust-bar__item:hover {
-    box-shadow: var(--shadow-xs);
   }
 
   .trust-bar__item [data-icon] {
     color: var(--color-primary);
     flex-shrink: 0;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .trust-bar__item {
-      transition: none;
-    }
   }
 </style>

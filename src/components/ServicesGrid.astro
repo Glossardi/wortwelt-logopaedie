@@ -43,14 +43,6 @@ const { services, sectionHeadings } = site;
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
     padding: 2rem 1.75rem;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-      box-shadow 0.3s ease, border-color 0.3s ease;
-  }
-
-  .service-card:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--color-primary);
   }
 
   .service-card__icon {
@@ -74,14 +66,5 @@ const { services, sectionHeadings } = site;
     color: var(--color-text-muted);
     font-size: 0.95rem;
     line-height: 1.6;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .service-card {
-      transition: none;
-    }
-    .service-card:hover {
-      transform: none;
-    }
   }
 </style>

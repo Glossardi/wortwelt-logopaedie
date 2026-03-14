@@ -54,11 +54,6 @@ const { process: steps, sectionHeadings } = site;
     grid-template-columns: var(--_marker-col) 1fr;
     gap: 1.25rem;
     position: relative;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .process-step:hover {
-    transform: translateY(-4px);
   }
 
   .process-step__marker {
@@ -140,15 +135,6 @@ const { process: steps, sectionHeadings } = site;
     }
     .process-step__connector {
       display: none;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .process-step {
-      transition: none;
-    }
-    .process-step:hover {
-      transform: none;
     }
   }
 </style>

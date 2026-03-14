@@ -26,11 +26,18 @@ const {
 } = Astro.props;
 
 const fullTitle = `${title} | ${site.company}`;
+/**
+ * Social Sharing / OG-Image:
+ * - Standardbild: public/images/og-default.svg (1200×630px)
+ * - Ersetzen Sie diese Datei mit einem Kundenbild für Social Sharing
+ * - Oder setzen Sie ogImage prop pro Seite
+ */
+const defaultOgImage = "/images/og-default.svg";
 const ogImageUrl = ogImage
   ? ogImage.startsWith("http")
     ? ogImage
     : `${site.url}${ogImage}`
-  : undefined;
+  : `${site.url}${defaultOgImage}`;
 
 // JSON-LD Structured Data (LocalBusiness)
 const jsonLd = {
@@ -135,14 +142,14 @@ const cssVars = `
     <meta property="og:url" content={canonical} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
-    {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
+    <meta property="og:image" content={ogImageUrl} />
     <meta property="og:locale" content={site.lang === "de" ? "de_DE" : site.lang === "en" ? "en_US" : site.lang} />
 
     <!-- Twitter/X Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
-    {ogImageUrl && <meta name="twitter:image" content={ogImageUrl} />}
+    <meta name="twitter:image" content={ogImageUrl} />
 
     <!-- Verification -->
     {site.verification?.google && <meta name="google-site-verification" content={site.verification.google} />}
