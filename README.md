@@ -10,6 +10,7 @@
 Ein schlankes, wartbares Starter-Repo für Freelancer, die schnell professionelle statische Websites für lokale Kunden erstellen. Basiert auf [Astro](https://astro.build), nutzt pure CSS Custom Properties für Branding und benötigt kein State Management.
 
 **Kernprinzipien:**
+
 - 🚀 Sehr schnell — minimales JS, Systemfonts, statischer Build
 - 🎨 Komplett per 2 Dateien brandbar (`site.ts` + `theme.ts`)
 - 🇩🇪 Deutsche Standardinhalte & Rechtsseiten-Vorlagen
@@ -72,13 +73,13 @@ const site: SiteData = {
 ```ts
 const theme: ThemeData = {
   colors: {
-    primary: "#c0392b",        // Kundenfarbe
+    primary: "#c0392b", // Kundenfarbe
     primaryDark: "#922b21",
     accent: "#e67e22",
     // ...
   },
   logo: {
-    src: "/images/logo.svg",   // Kundenlogo ablegen
+    src: "/images/logo.svg", // Kundenlogo ablegen
     alt: "Kundenname Logo",
     width: 160,
   },
@@ -89,14 +90,14 @@ const theme: ThemeData = {
 
 Seiteninhalte befinden sich direkt in den Astro-Dateien unter **`src/pages/`**:
 
-| Datei | Inhalt |
-|---|---|
-| `src/pages/index.astro` | Startseite (Hero, Services, Testimonials, FAQ) |
-| `src/pages/leistungen.astro` | Leistungsseite |
-| `src/pages/ueber-uns.astro` | Über-uns-Seite |
-| `src/pages/kontakt.astro` | Kontaktseite |
-| `src/pages/impressum.astro` | Impressum (Pflichtseite) |
-| `src/pages/datenschutz.astro` | Datenschutzerklärung (Pflichtseite) |
+| Datei                         | Inhalt                                         |
+| ----------------------------- | ---------------------------------------------- |
+| `src/pages/index.astro`       | Startseite (Hero, Services, Testimonials, FAQ) |
+| `src/pages/leistungen.astro`  | Leistungsseite                                 |
+| `src/pages/ueber-uns.astro`   | Über-uns-Seite                                 |
+| `src/pages/kontakt.astro`     | Kontaktseite                                   |
+| `src/pages/impressum.astro`   | Impressum (Pflichtseite)                       |
+| `src/pages/datenschutz.astro` | Datenschutzerklärung (Pflichtseite)            |
 
 ---
 
@@ -107,11 +108,11 @@ Alle Designwerte sind in **`src/data/theme.ts`** zentral definiert und werden al
 **Wichtigste Felder:**
 
 ```ts
-colors.primary       // Primärfarbe (Buttons, Links, Akzente)
-colors.primaryDark   // Hover-Zustand
-colors.accent        // Highlights
-colors.text          // Textfarbe
-logo.src             // Pfad zur Logodatei (unter /public/images/)
+colors.primary; // Primärfarbe (Buttons, Links, Akzente)
+colors.primaryDark; // Hover-Zustand
+colors.accent; // Highlights
+colors.text; // Textfarbe
+logo.src; // Pfad zur Logodatei (unter /public/images/)
 ```
 
 **Logo ersetzen:** Datei unter `public/images/logo.svg` (oder `.png`) ablegen und Pfad in `theme.ts` aktualisieren.
@@ -160,11 +161,13 @@ Fertig — die Seite ist automatisch unter `/referenzen` erreichbar.
 Das Kontaktformular (`ContactSection.astro`) verwendet standardmäßig einen **mailto-Fallback**. Für ein echtes Formular:
 
 **Formspree:**
+
 ```astro
 <ContactSection formAction="https://formspree.io/f/DEIN-FORMSPREE-ID" />
 ```
 
 **Basin:**
+
 ```astro
 <ContactSection formAction="https://usebasin.com/f/DEIN-BASIN-ID" />
 ```
@@ -214,6 +217,7 @@ Für GitHub Pages in `astro.config.mjs` ggf. `base: "/REPO-NAME"` setzen.
 > **Die Dateien `src/pages/impressum.astro` und `src/pages/datenschutz.astro` enthalten ausschließlich Vorlagen-Platzhalter. Sie sind NICHT automatisch rechtssicher.**
 
 **Vor dem Go-Live unbedingt:**
+
 - [ ] Alle `[TODO]`-Markierungen mit echten Kundendaten ausfüllen
 - [ ] Datenschutzerklärung an tatsächlich genutzte Dienste anpassen (Hosting, Formulare, Analytics)
 - [ ] Impressum von einem Rechtsanwalt prüfen lassen **oder** einen seriösen Impressum-Generator nutzen (z. B. eRecht24, Trusted Shops, Händlerbund)
