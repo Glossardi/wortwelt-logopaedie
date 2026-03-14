@@ -18,8 +18,8 @@ const { services, sectionHeadings } = site;
     </div>
 
     <div class="services-grid">
-      {services.map((service, index) => (
-        <div class="service-card reveal" data-reveal-delay={String(Math.min(index + 1, 5))}>
+      {services.map((service, i) => (
+        <div class="service-card reveal" data-reveal-delay={(i % 3) + 1}>
           <div class="service-card__icon">
             <Icon name={`lucide:${service.icon}`} size={28} aria-hidden="true" />
           </div>
@@ -78,8 +78,10 @@ const { services, sectionHeadings } = site;
 
   @media (prefers-reduced-motion: reduce) {
     .service-card {
-      transition: none !important;
-      transform: none !important;
+      transition: none;
+    }
+    .service-card:hover {
+      transform: none;
     }
   }
 </style>
