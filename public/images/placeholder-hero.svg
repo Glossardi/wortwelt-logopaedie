@@ -1,7 +1,58 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
-  <rect width="1920" height="1080" fill="#e2e8f0"/>
-  <rect x="60" y="60" width="1800" height="960" rx="12" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="8 4"/>
-  <text x="960" y="500" text-anchor="middle" font-family="system-ui, sans-serif" font-size="36" fill="#64748b">Hero-Bild ersetzen</text>
-  <text x="960" y="560" text-anchor="middle" font-family="system-ui, sans-serif" font-size="20" fill="#94a3b8">Empfohlen: 1920 × 1080 px (16:9)</text>
-  <text x="960" y="600" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" fill="#94a3b8">public/images/placeholder-hero.svg</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F9F9F9"/>
+      <stop offset="100%" stop-color="#FFFFFF"/>
+    </linearGradient>
+    <linearGradient id="tealWave" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#5C9EA0" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#7DB8BA" stop-opacity="0.06"/>
+    </linearGradient>
+    <linearGradient id="tealWave2" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5C9EA0" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#4A8385" stop-opacity="0.04"/>
+    </linearGradient>
+    <linearGradient id="coralGlow" x1="0.5" y1="0" x2="0.5" y2="1">
+      <stop offset="0%" stop-color="#FF6F61" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#FF6F61" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="1440" height="600" fill="url(#bg)"/>
+  <!-- Large flowing wave — bottom layer -->
+  <path d="M0 380 C200 320, 400 420, 600 370 C800 320, 1000 400, 1200 350 C1320 330, 1400 360, 1440 340 L1440 600 L0 600 Z" fill="url(#tealWave)"/>
+  <!-- Second wave — mid layer -->
+  <path d="M0 440 C180 400, 360 480, 560 430 C760 380, 960 460, 1160 420 C1300 400, 1400 430, 1440 410 L1440 600 L0 600 Z" fill="url(#tealWave2)"/>
+  <!-- Soft coral accent arc — top right -->
+  <ellipse cx="1200" cy="120" rx="350" ry="200" fill="url(#coralGlow)"/>
+  <!-- Decorative speech bubbles — very subtle -->
+  <g opacity="0.08" fill="#5C9EA0">
+    <!-- Bubble top-left area -->
+    <path d="M120 80 C120 68, 130 60, 142 60 L178 60 C190 60, 200 68, 200 80 L200 105 C200 117, 190 125, 178 125 L150 125 L138 137 L141 125 L142 125 C130 125, 120 117, 120 105 Z"/>
+    <!-- Bubble right area -->
+    <path d="M1100 180 C1100 170, 1108 164, 1118 164 L1152 164 C1162 164, 1170 170, 1170 180 L1170 200 C1170 210, 1162 216, 1152 216 L1130 216 L1120 226 L1122 216 L1118 216 C1108 216, 1100 210, 1100 200 Z"/>
+  </g>
+  <g opacity="0.06" fill="#5C9EA0">
+    <!-- Smaller bubble mid-left -->
+    <path d="M300 200 C300 193, 305 188, 312 188 L338 188 C345 188, 350 193, 350 200 L350 216 C350 223, 345 228, 338 228 L320 228 L313 235 L315 228 L312 228 C305 228, 300 223, 300 216 Z"/>
+  </g>
+  <!-- Decorative dots cluster — bottom left -->
+  <circle cx="80" cy="480" r="4" fill="#5C9EA0" opacity="0.1"/>
+  <circle cx="100" cy="500" r="6" fill="#5C9EA0" opacity="0.08"/>
+  <circle cx="65" cy="510" r="3" fill="#FF6F61" opacity="0.12"/>
+  <circle cx="115" cy="485" r="2.5" fill="#5C9EA0" opacity="0.1"/>
+  <!-- Decorative dots cluster — top right -->
+  <circle cx="1320" cy="80" r="5" fill="#5C9EA0" opacity="0.1"/>
+  <circle cx="1350" cy="100" r="3" fill="#FF6F61" opacity="0.15"/>
+  <circle cx="1300" cy="105" r="3.5" fill="#5C9EA0" opacity="0.08"/>
+  <circle cx="1365" cy="70" r="2" fill="#5C9EA0" opacity="0.1"/>
+  <!-- Gentle curves — decorative arcs -->
+  <path d="M0 520 Q360 470, 720 530 T1440 500" fill="none" stroke="#5C9EA0" stroke-width="1" stroke-opacity="0.07"/>
+  <path d="M0 550 Q400 510, 800 560 T1440 540" fill="none" stroke="#7DB8BA" stroke-width="0.8" stroke-opacity="0.06"/>
+  <!-- Small floating circles — scattered -->
+  <circle cx="500" cy="140" r="30" fill="#5C9EA0" opacity="0.03"/>
+  <circle cx="900" cy="100" r="45" fill="#7DB8BA" opacity="0.04"/>
+  <circle cx="700" cy="450" r="60" fill="#5C9EA0" opacity="0.03"/>
+  <circle cx="200" cy="350" r="40" fill="#FF6F61" opacity="0.03"/>
+  <circle cx="1100" cy="400" r="35" fill="#5C9EA0" opacity="0.04"/>
 </svg>

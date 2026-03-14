@@ -1,7 +1,54 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-  <rect width="1200" height="630" fill="#f8fafc"/>
-  <rect x="40" y="40" width="1120" height="550" rx="16" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
-  <text x="600" y="280" text-anchor="middle" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#1e293b">Firmenname</text>
-  <text x="600" y="340" text-anchor="middle" font-family="system-ui, sans-serif" font-size="24" fill="#64748b">Ihr Slogan hier</text>
-  <text x="600" y="520" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" fill="#94a3b8">OG-Image ersetzen: public/images/og-default.svg</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="ogBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#5C9EA0"/>
+      <stop offset="50%" stop-color="#4A8385"/>
+      <stop offset="100%" stop-color="#3D7072"/>
+    </linearGradient>
+    <linearGradient id="ogShine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <!-- Background gradient -->
+  <rect width="1200" height="630" fill="url(#ogBg)"/>
+  <!-- Subtle light overlay -->
+  <rect width="1200" height="630" fill="url(#ogShine)"/>
+  <!-- Decorative large circles — background texture -->
+  <circle cx="150" cy="530" r="200" fill="#FFFFFF" opacity="0.03"/>
+  <circle cx="1050" cy="100" r="250" fill="#FFFFFF" opacity="0.04"/>
+  <circle cx="900" cy="500" r="180" fill="#FFFFFF" opacity="0.02"/>
+  <!-- Decorative wave — bottom -->
+  <path d="M0 520 Q300 470, 600 510 T1200 480 L1200 630 L0 630 Z" fill="#FFFFFF" opacity="0.04"/>
+  <path d="M0 560 Q300 530, 600 555 T1200 530 L1200 630 L0 630 Z" fill="#FFFFFF" opacity="0.03"/>
+  <!-- Speech bubble icon — centered above text -->
+  <g transform="translate(540, 140)">
+    <path d="M0 30 C0 13, 13 0, 30 0 L90 0 C107 0, 120 13, 120 30 L120 65 C120 82, 107 95, 90 95 L50 95 L28 118 L34 95 L30 95 C13 95, 0 82, 0 65 Z" fill="#FFFFFF" opacity="0.95"/>
+    <circle cx="38" cy="48" r="7" fill="#5C9EA0"/>
+    <circle cx="60" cy="48" r="7" fill="#5C9EA0"/>
+    <circle cx="82" cy="48" r="7" fill="#FF6F61"/>
+  </g>
+  <!-- Wortwelt text -->
+  <text x="600" y="320" text-anchor="middle" font-family="'Montserrat', 'Arial', sans-serif" font-size="72" font-weight="700" fill="#FFFFFF" letter-spacing="2">Wortwelt</text>
+  <!-- Logopädie text -->
+  <text x="600" y="370" text-anchor="middle" font-family="'Montserrat', 'Arial', sans-serif" font-size="30" font-weight="500" fill="#FFFFFF" opacity="0.85" letter-spacing="5">Logopädie</text>
+  <!-- Divider line -->
+  <line x1="480" y1="400" x2="720" y2="400" stroke="#FFFFFF" stroke-width="1" stroke-opacity="0.3"/>
+  <!-- Tagline -->
+  <text x="600" y="440" text-anchor="middle" font-family="'Montserrat', 'Arial', sans-serif" font-size="18" font-weight="400" fill="#FFFFFF" opacity="0.7" letter-spacing="1.5">Logopädische Praxis in Berlin-Treptow</text>
+  <!-- Scattered decorative speech bubbles — subtle -->
+  <g opacity="0.08" fill="#FFFFFF">
+    <path d="M100 120 C100 111, 107 106, 115 106 L150 106 C158 106, 165 111, 165 120 L165 140 C165 149, 158 154, 150 154 L130 154 L118 165 L121 154 L115 154 C107 154, 100 149, 100 140 Z"/>
+    <path d="M1020 400 C1020 393, 1025 389, 1032 389 L1060 389 C1067 389, 1072 393, 1072 400 L1072 416 C1072 423, 1067 427, 1060 427 L1044 427 L1036 435 L1038 427 L1032 427 C1025 427, 1020 423, 1020 416 Z"/>
+  </g>
+  <!-- Floating dots -->
+  <circle cx="200" cy="300" r="4" fill="#FFFFFF" opacity="0.1"/>
+  <circle cx="180" cy="450" r="3" fill="#FF6F61" opacity="0.15"/>
+  <circle cx="1000" cy="200" r="5" fill="#FFFFFF" opacity="0.08"/>
+  <circle cx="1050" cy="340" r="3" fill="#FF6F61" opacity="0.12"/>
+  <circle cx="350" cy="500" r="3.5" fill="#FFFFFF" opacity="0.08"/>
+  <circle cx="850" cy="480" r="4" fill="#FFFFFF" opacity="0.06"/>
+  <!-- Coral accent dots -->
+  <circle cx="280" cy="180" r="3" fill="#FF6F61" opacity="0.2"/>
+  <circle cx="920" cy="150" r="2.5" fill="#FF6F61" opacity="0.18"/>
 </svg>

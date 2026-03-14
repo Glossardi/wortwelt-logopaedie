@@ -137,221 +137,241 @@ export interface SiteData {
 // ─── Demo-Daten ─────────────────────────────────────────────────────
 
 const site: SiteData = {
-  company: "Muster Schreinerei",
+  company: "Wortwelt Logopädie",
   logo: "/images/logo.svg",
-  tagline: "Maßgefertigte Möbel & Innenausbau in Musterstadt",
-  url: "https://example.com",
+  tagline: "Logopädische Praxis für Kinder und Erwachsene in Berlin-Treptow",
+  url: "https://wortwelt-logopaedie.de",
   lang: "de",
 
-  theme: "warm-craft",
+  theme: "professional-blue",
+  themeOverrides: {
+    colors: {
+      primary: "#5C9EA0",
+      primaryDark: "#4A8385",
+      secondary: "#FFF0ED",
+      accent: "#FF6F61",
+      background: "#F9F9F9",
+      surface: "#FFFFFF",
+      text: "#2E2E2E",
+      textMuted: "#6B7280",
+      onPrimary: "#FFFFFF",
+      border: "#E5E7EB",
+    },
+    typography: {
+      fontBody: "'Open Sans', sans-serif",
+      fontHeading: "'Montserrat', sans-serif",
+    },
+    border: {
+      radius: "0.25rem",
+      radiusLg: "0.5rem",
+    },
+    shadow: {
+      xs: "0 1px 2px 0 rgba(0,0,0,0.04)",
+      sm: "0 1px 3px 0 rgba(0,0,0,0.06), 0 1px 2px -1px rgba(0,0,0,0.06)",
+      md: "0 2px 4px -1px rgba(92,158,160,0.08), 0 4px 6px -1px rgba(0,0,0,0.06)",
+      lg: "0 4px 6px -2px rgba(92,158,160,0.1), 0 10px 15px -3px rgba(0,0,0,0.08)",
+      xl: "0 8px 10px -4px rgba(92,158,160,0.12), 0 20px 25px -5px rgba(0,0,0,0.08)",
+    },
+  },
 
   contact: {
-    email: "info@muster-schreinerei.de",
-    phone: "+49 123 456789",
+    email: "info@wortwelt-logopaedie.de",
+    phone: "+49 30 12345678",
     address: {
-      street: "Werkstraße 12",
-      zip: "12345",
-      city: "Musterstadt",
+      street: "Kiefholzstraße 253",
+      zip: "12437",
+      city: "Berlin",
     },
   },
 
   openingHours: [
-    { days: "Mo–Fr", hours: "07:30–17:00 Uhr" },
-    { days: "Sa", hours: "08:00–12:00 Uhr" },
+    { days: "Mo–Fr", hours: "08:00–18:00 Uhr" },
+    { days: "Sa–So", hours: "Geschlossen" },
   ],
 
   social: {
-    instagram: "https://instagram.com/musterschreinerei",
-    facebook: "https://facebook.com/musterschreinerei",
+    instagram: "https://instagram.com/wortwelt.logopaedie",
   },
 
   nav: [
     { label: "Leistungen", href: "#services" },
     { label: "Über uns", href: "#about" },
     { label: "Ablauf", href: "#process" },
+    { label: "Bewertungen", href: "#testimonials" },
+    { label: "FAQ", href: "#faq" },
     { label: "Kontakt", href: "#contact" },
   ],
 
   cta: {
-    label: "Jetzt anfragen",
+    label: "Termin vereinbaren",
     href: "#contact",
   },
 
   ctaSecondary: {
-    label: "Leistungen ansehen",
+    label: "Unsere Leistungen",
     href: "#services",
   },
 
-  // ─── Hero ──────────────────────────────────────────────────────────
-
   hero: {
-    headline: "Maßgefertigte Möbel für Ihr Zuhause",
+    headline: "Ihre Stimme verdient die beste Betreuung",
     subline:
-      "Vom Entwurf bis zur Montage — Qualitätshandwerk aus Musterstadt. Persönlich, zuverlässig, maßgenau.",
-    backgroundImage: "/images/placeholder-hero.svg",
+      "Logopädische Therapie für Kinder und Erwachsene in Berlin-Treptow. Einfühlsam, evidenzbasiert und auf Ihre individuellen Bedürfnisse abgestimmt — auch als Hausbesuch.",
   },
 
-  // ─── Trust ─────────────────────────────────────────────────────────
-
   trustItems: [
-    { icon: "award", label: "Meisterbetrieb" },
-    { icon: "calendar", label: "Seit 1985" },
-    { icon: "users", label: "500+ Projekte" },
-    { icon: "shield-check", label: "5 Jahre Garantie" },
+    { icon: "award", label: "Zertifizierte Therapeuten" },
+    { icon: "users", label: "Kinder & Erwachsene" },
+    { icon: "home", label: "Hausbesuche möglich" },
+    { icon: "shield-check", label: "Alle Kassen & Privat" },
   ],
-
-  // ─── Services ──────────────────────────────────────────────────────
 
   services: [
     {
-      icon: "sofa",
-      title: "Maßmöbel",
+      icon: "baby",
+      title: "Sprachentwicklung",
       description:
-        "Individuelle Möbel nach Ihren Wünschen — vom Einbauschrank bis zum Esstisch.",
+        "Diagnostik und Therapie bei Sprachentwicklungsstörungen, Late Talker und Sprachentwicklungsverzögerungen im Kindesalter.",
     },
     {
-      icon: "door-open",
-      title: "Türen & Fenster",
+      icon: "mic",
+      title: "Stimmtherapie",
       description:
-        "Haustüren, Innentüren und Fenster in höchster Qualität, passgenau gefertigt.",
+        "Behandlung von funktionellen und organischen Stimmstörungen — für Berufssprecher, Sänger und alle, die ihre Stimme brauchen.",
+    },
+    {
+      icon: "message-circle",
+      title: "Stottern & Poltern",
+      description:
+        "Individuelle Therapiekonzepte bei Redeflussstörungen für Kinder, Jugendliche und Erwachsene.",
+    },
+    {
+      icon: "utensils",
+      title: "Schlucktherapie",
+      description:
+        "Diagnostik und Behandlung von Schluckstörungen (Dysphagie) nach Schlaganfall, bei neurologischen Erkrankungen oder im Alter.",
+    },
+    {
+      icon: "brain",
+      title: "Aphasie & Neurologie",
+      description:
+        "Sprachtherapie nach Schlaganfall, Schädel-Hirn-Trauma oder bei neurodegenerativen Erkrankungen wie Parkinson und Demenz.",
     },
     {
       icon: "home",
-      title: "Innenausbau",
+      title: "Hausbesuche",
       description:
-        "Kompletter Innenausbau: Böden, Decken, Wandverkleidungen und Trockenbau.",
-    },
-    {
-      icon: "hammer",
-      title: "Restaurierung",
-      description:
-        "Fachgerechte Restaurierung antiker Möbel und historischer Holzelemente.",
-    },
-    {
-      icon: "ruler",
-      title: "Küchenplanung",
-      description:
-        "Maßküchen von der 3D-Planung bis zum Einbau — Ihr Traumküche wird Realität.",
-    },
-    {
-      icon: "wrench",
-      title: "Reparaturen",
-      description:
-        "Schnelle und professionelle Reparaturen an Möbeln, Türen und Fenstern.",
+        "Therapie bei Ihnen zu Hause — für Patienten mit eingeschränkter Mobilität, nach Operationen oder auf ärztliche Verordnung.",
     },
   ],
 
-  // ─── About ─────────────────────────────────────────────────────────
-
   about: {
-    heading: "Tradition trifft Moderne",
-    text: "Seit über 35 Jahren steht die Muster Schreinerei für Qualitätshandwerk in Musterstadt. Als Familienbetrieb in dritter Generation verbinden wir traditionelle Handwerkstechniken mit modernen Fertigungsmethoden. Unser Team aus 8 erfahrenen Schreinern und 3 Auszubildenden arbeitet mit Leidenschaft an jedem Projekt — ob Einbauschrank oder kompletter Innenausbau.",
+    heading: "Sprache verbindet — Wortwelt begleitet",
+    text: "Die Wortwelt Logopädie in Berlin-Treptow steht für einfühlsame und evidenzbasierte Sprachtherapie. Unter der Leitung von Alphan Elduran bieten wir individuelle Behandlungskonzepte für Kinder und Erwachsene. In unserer modernen Praxis in der Kiefholzstraße schaffen wir eine vertrauensvolle Atmosphäre, in der sich unsere Patienten wohlfühlen und optimale Therapieerfolge erzielen. Ob Sprachentwicklung, Stimmtherapie oder Rehabilitation nach Schlaganfall — wir begleiten Sie auf Ihrem Weg zu besserer Kommunikation.",
     image: "/images/placeholder-about.svg",
-    imageAlt: "Werkstatt der Muster Schreinerei",
+    imageAlt: "Helle und einladende Praxisräume der Wortwelt Logopädie",
   },
-
-  // ─── Process ───────────────────────────────────────────────────────
 
   process: [
     {
       icon: "phone",
-      title: "Erstgespräch",
+      title: "Kontaktaufnahme",
       description:
-        "Wir besprechen Ihre Wünsche und nehmen Maß — kostenlos und unverbindlich.",
+        "Rufen Sie uns an oder schreiben Sie uns — wir finden zeitnah einen Termin für Ihr Erstgespräch.",
     },
     {
-      icon: "pencil-ruler",
-      title: "Planung & Entwurf",
+      icon: "clipboard-list",
+      title: "Befunderhebung",
       description:
-        "Sie erhalten einen detaillierten Entwurf mit 3D-Visualisierung und transparentem Angebot.",
+        "In einer ausführlichen Diagnostik erfassen wir den aktuellen Sprach- und Sprechstatus als Grundlage für die Therapie.",
     },
     {
-      icon: "hammer",
-      title: "Fertigung",
+      icon: "file-text",
+      title: "Therapieplan",
       description:
-        "In unserer Werkstatt fertigen wir Ihr Projekt mit Präzision und hochwertigen Materialien.",
+        "Gemeinsam erstellen wir einen individuellen Behandlungsplan mit konkreten Zielen und transparentem Vorgehen.",
     },
     {
-      icon: "check-circle",
-      title: "Montage & Übergabe",
+      icon: "heart",
+      title: "Therapie & Begleitung",
       description:
-        "Fachgerechte Montage vor Ort und Übergabe — erst wenn Sie zufrieden sind, sind wir es auch.",
+        "Regelmäßige Sitzungen mit evidenzbasierten Methoden — wir begleiten Sie bis zum nachhaltigen Therapieerfolg.",
     },
   ],
-
-  // ─── Testimonials ──────────────────────────────────────────────────
 
   testimonials: [
     {
       quote:
-        "Unsere neue Einbauküche ist ein Traum. Von der Planung bis zur Montage — alles perfekt und termingerecht.",
-      author: "Familie Weber",
-      role: "Privatkunde",
+        "Mein Sohn hat dank der einfühlsamen Therapie bei Wortwelt riesige Fortschritte gemacht. Die Therapeuten gehen individuell auf jedes Kind ein — das merkt man sofort.",
+      author: "Familie Yılmaz",
+      role: "Eltern eines 5-jährigen Patienten",
       rating: 5,
     },
     {
       quote:
-        "Professionell, zuverlässig und fair im Preis. Die Schreinerei Muster hat unsere Büroräume komplett ausgebaut.",
-      author: "Thomas Richter",
-      role: "Geschäftsführer, Richter IT",
+        "Nach meinem Schlaganfall hatte ich große Angst, nie wieder richtig sprechen zu können. Die Therapie bei Wortwelt hat mir Schritt für Schritt meine Sprache zurückgegeben.",
+      author: "Hannelore M.",
+      role: "Patientin, Aphasie-Therapie",
       rating: 5,
     },
     {
       quote:
-        "Die Restaurierung unserer antiken Kommode war hervorragend. Man sieht sofort die Liebe zum Detail.",
-      author: "Maria Schneider",
-      role: "Privatkundin",
+        "Als Lehrerin ist meine Stimme mein wichtigstes Werkzeug. Die Stimmtherapie hat mir geholfen, meinen Beruf wieder schmerzfrei ausüben zu können. Sehr kompetent und freundlich!",
+      author: "Sarah K.",
+      role: "Patientin, Stimmtherapie",
       rating: 5,
     },
   ],
-
-  // ─── FAQ ───────────────────────────────────────────────────────────
 
   faq: [
     {
-      question: "Wie läuft eine Auftragsanfrage ab?",
+      question: "Brauche ich eine Überweisung für logopädische Therapie?",
       answer:
-        "Kontaktieren Sie uns telefonisch oder über das Kontaktformular. Wir vereinbaren einen kostenlosen Beratungstermin, bei dem wir Ihre Wünsche besprechen und Maß nehmen.",
+        "Ja, für eine Behandlung auf Kassenkosten benötigen Sie eine Heilmittelverordnung von Ihrem Arzt (Hausarzt, HNO-Arzt, Kinderarzt, Neurologe etc.). Privatpatienten und Selbstzahler können auch ohne Verordnung einen Termin vereinbaren.",
     },
     {
-      question: "Wie lange dauert die Fertigung?",
+      question: "Werden die Kosten von der Krankenkasse übernommen?",
       answer:
-        "Je nach Umfang rechnen Sie mit 4–8 Wochen ab Auftragsbestätigung. Bei Großprojekten erstellen wir einen individuellen Zeitplan.",
+        "Ja, logopädische Therapie ist eine anerkannte Heilmittelbehandlung. Mit einer ärztlichen Verordnung übernehmen gesetzliche und private Krankenkassen die Kosten. Gesetzlich Versicherte ab 18 Jahren tragen einen Eigenanteil von 10 % plus 10 € je Verordnung.",
     },
     {
-      question: "Bieten Sie auch Montage an?",
+      question: "Wie oft findet die Therapie statt?",
       answer:
-        "Ja, wir liefern und montieren alles fachgerecht bei Ihnen vor Ort. Der Preis ist im Angebot enthalten.",
+        "In der Regel finden 1–2 Sitzungen pro Woche statt, je nach ärztlicher Verordnung und individuellem Bedarf. Jede Sitzung dauert zwischen 30 und 60 Minuten.",
     },
     {
-      question: "Welche Materialien verwenden Sie?",
+      question: "Bieten Sie auch Hausbesuche an?",
       answer:
-        "Wir arbeiten vorwiegend mit heimischen Hölzern aus nachhaltiger Forstwirtschaft. Auf Wunsch auch mit Spezialhölzern oder modernen Verbundwerkstoffen.",
+        "Ja, wir bieten Hausbesuche für Patienten mit eingeschränkter Mobilität an. Dafür muss ein entsprechender Vermerk auf der Heilmittelverordnung stehen. Sprechen Sie Ihren Arzt darauf an.",
     },
     {
-      question: "Gibt es eine Garantie?",
+      question: "Behandeln Sie auch Erwachsene?",
       answer:
-        "Auf alle unsere Arbeiten geben wir 5 Jahre Garantie. Bei Fragen oder Problemen sind wir jederzeit erreichbar.",
+        "Ja, wir behandeln Patienten jeden Alters — von Kleinkindern bis zu Senioren. Zu unseren Schwerpunkten bei Erwachsenen zählen Stimmstörungen, Aphasie nach Schlaganfall, Schluckstörungen und Redeflussstörungen.",
+    },
+    {
+      question: "Was soll ich zum Ersttermin mitbringen?",
+      answer:
+        "Bitte bringen Sie die Heilmittelverordnung Ihres Arztes, Ihre Versichertenkarte sowie eventuell vorhandene Vorbefunde (z. B. von HNO, Pädaudiologe oder SPZ) mit.",
     },
   ],
 
-  // ─── Sektions-Überschriften ────────────────────────────────────────
-
   sectionHeadings: {
     services: "Unsere Leistungen",
-    servicesIntro: "Von Maßmöbeln bis Innenausbau — wir setzen Ihre Ideen in Holz um.",
-    about: "Über uns",
-    process: "So arbeiten wir",
+    servicesIntro:
+      "Wir bieten ein breites Spektrum logopädischer Therapien — individuell abgestimmt auf Ihr Anliegen.",
+    about: "Über unsere Praxis",
+    process: "Ihr Weg zur Therapie",
     processIntro:
-      "In vier Schritten zu Ihrem fertigen Projekt — transparent und persönlich.",
-    testimonials: "Das sagen unsere Kunden",
+      "In vier einfachen Schritten zu Ihrer individuellen logopädischen Behandlung.",
+    testimonials: "Das sagen unsere Patienten",
     testimonialsIntro:
-      "Zufriedene Kunden sind unser bestes Aushängeschild.",
+      "Erfahren Sie, wie unsere Therapie das Leben unserer Patienten verändert hat.",
     faq: "Häufige Fragen",
-    faqIntro: "Antworten auf die wichtigsten Fragen rund um unsere Arbeit.",
-    contact: "Kontakt aufnehmen",
+    faqIntro:
+      "Antworten auf die wichtigsten Fragen rund um logopädische Therapie und unsere Praxis.",
+    contact: "Kontakt & Anfahrt",
     contactIntro:
-      "Schreiben Sie uns oder rufen Sie an — wir beraten Sie gerne persönlich.",
+      "Vereinbaren Sie jetzt Ihren Termin — wir freuen uns auf Sie!",
   },
 };
 

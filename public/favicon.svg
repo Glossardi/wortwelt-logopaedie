@@ -1,5 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <!-- TODO: Replace with actual client favicon -->
-  <rect width="32" height="32" rx="6" fill="#1d4ed8"/>
-  <text x="7" y="23" font-family="system-ui, sans-serif" font-size="20" fill="white">⚡</text>
+  <!-- Rounded square background -->
+  <rect width="32" height="32" rx="7" fill="#5C9EA0"/>
+  <!-- Speech bubble shape -->
+  <path d="M6 8 C6 5.5, 8 4, 10.5 4 L21.5 4 C24 4, 26 5.5, 26 8 L26 17 C26 19.5, 24 21, 21.5 21 L14 21 L10 25.5 L11 21 L10.5 21 C8 21, 6 19.5, 6 17 Z" fill="#FFFFFF"/>
+  <!-- Three dots inside bubble -->
+  <circle cx="12.5" cy="12.5" r="1.6" fill="#5C9EA0"/>
+  <circle cx="16" cy="12.5" r="1.6" fill="#5C9EA0"/>
+  <circle cx="19.5" cy="12.5" r="1.6" fill="#FF6F61"/>
 </svg>
