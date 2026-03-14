@@ -3,8 +3,6 @@
  * AboutTeaser.astro — Kurzvorstellung mit optionalem Bild
  */
 import site from "@data/site";
-import { Image } from "astro:assets";
-import aboutImage from "../assets/images/about.jpg";
 
 const { about, sectionHeadings } = site;
 ---
@@ -18,16 +16,13 @@ const { about, sectionHeadings } = site;
         <h3 class="about-title">{about.heading}</h3>
         <p class="about-text">{about.text}</p>
       </div>
-      {aboutImage && (
+      {about.image && (
         <div class="about-image reveal">
-          <Image
-            src={aboutImage}
+          <img
+            src={about.image}
             alt={about.imageAlt || ""}
             loading="lazy"
             decoding="async"
-            format="webp"
-            quality={80}
-            class="about__image"
           />
         </div>
       )}
