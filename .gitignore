@@ -28,4 +28,5 @@ Thumbs.db
 
 # Temporary
 tmp/
+tmp-*/
 temp/
