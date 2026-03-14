@@ -64,21 +64,25 @@ h2 {
 h3 {
   font-size: clamp(1.25rem, 2.5vw, 1.75rem);
   font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--tracking-normal);
 }
 
 h4 {
   font-size: clamp(1.125rem, 2vw, 1.5rem);
   font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--tracking-normal);
 }
 
 h5 {
   font-size: clamp(1rem, 1.6vw, 1.25rem);
   font-weight: var(--font-weight-medium);
+  letter-spacing: var(--tracking-normal);
 }
 
 h6 {
   font-size: clamp(0.9375rem, 1.4vw, 1.125rem);
   font-weight: var(--font-weight-medium);
+  letter-spacing: var(--tracking-normal);
 }
 
 p { max-width: 70ch; }

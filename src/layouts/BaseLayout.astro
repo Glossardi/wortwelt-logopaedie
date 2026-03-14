@@ -21,16 +21,59 @@ const {
   title,
   description,
   canonical = Astro.url.href,
-  ogImage = "/images/og-default.jpg",
+  ogImage,
   robots = "index, follow",
 } = Astro.props;
 
 const fullTitle = `${title} | ${site.company}`;
-const ogImageUrl = ogImage.startsWith("http")
-  ? ogImage
-  : `${site.url}${ogImage}`;
+const ogImageUrl = ogImage
+  ? ogImage.startsWith("http")
+    ? ogImage
+    : `${site.url}${ogImage}`
+  : undefined;
+
+// JSON-LD Structured Data (LocalBusiness)
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": site.company,
+  "description": site.tagline,
+  "url": site.url,
+  "telephone": site.contact.phone,
+  "email": site.contact.email,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": site.contact.address.street,
+    "postalCode": site.contact.address.zip,
+    "addressLocality": site.contact.address.city,
+    "addressCountry": "DE",
+  },
+  ...(site.openingHours?.length > 0 && {
+    "openingHoursSpecification": site.openingHours.map((oh) => ({
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": oh.days,
+      "opens": "08:00",
+      "closes": "17:00",
+    })),
+  }),
+  ...(site.testimonials?.length > 0 && {
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": String(
+        (
+          site.testimonials.reduce((sum, t) => sum + (t.rating || 5), 0) /
+          site.testimonials.length
+        ).toFixed(1),
+      ),
+      "reviewCount": String(site.testimonials.length),
+      "bestRating": "5",
+      "worstRating": "1",
+    },
+  }),
+};
 
 const cssVars = `
+  /* Colors */
   --color-primary: ${theme.colors.primary};
   --color-primary-dark: ${theme.colors.primaryDark};
   --color-secondary: ${theme.colors.secondary};
@@ -41,6 +84,7 @@ const cssVars = `
   --color-text-muted: ${theme.colors.textMuted};
   --color-on-primary: ${theme.colors.onPrimary};
   --color-border: ${theme.colors.border};
+  /* Typography */
   --font-body: ${theme.typography.fontBody};
   --font-heading: ${theme.typography.fontHeading};
   --size-base: ${theme.typography.sizeBase};
@@ -52,6 +96,7 @@ const cssVars = `
   --tracking-tight: ${theme.typography.trackingTight};
   --tracking-normal: ${theme.typography.trackingNormal};
   --tracking-wide: ${theme.typography.trackingWide};
+  /* Layout and spacing */
   --container-max: ${theme.layout.containerMax};
   --container-padding: ${theme.layout.containerPadding};
   --section-spacing: ${theme.layout.sectionSpacing};
@@ -63,6 +108,7 @@ const cssVars = `
   --space-2xl: ${theme.spacing["2xl"]};
   --space-3xl: ${theme.spacing["3xl"]};
   --space-4xl: ${theme.spacing["4xl"]};
+  /* Border and shadow */
   --radius: ${theme.border.radius};
   --radius-lg: ${theme.border.radiusLg};
   --shadow-xs: ${theme.shadow.xs};
@@ -88,8 +134,18 @@ const cssVars = `
     <meta property="og:url" content={canonical} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={ogImageUrl} />
-    <meta property="og:locale" content="de_DE" />
+    {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
+    <meta property="og:locale" content={site.lang === "de" ? "de_DE" : site.lang === "en" ? "en_US" : site.lang} />
+
+    <!-- Twitter/X Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    {ogImageUrl && <meta name="twitter:image" content={ogImageUrl} />}
+
+    <!-- Verification -->
+    {site.verification?.google && <meta name="google-site-verification" content={site.verification.google} />}
+    {site.verification?.bing && <meta name="msvalidate.01" content={site.verification.bing} />}
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -97,6 +153,9 @@ const cssVars = `
 
     <!-- Sitemap -->
     <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
     <!-- Design Tokens als CSS Custom Properties -->
     <style set:html={`html { ${cssVars} }`}></style>

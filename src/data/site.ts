@@ -95,6 +95,12 @@ export interface SiteData {
     answer: string;
   }>;
 
+  // Verification Tags für Suchmaschinen
+  verification?: {
+    google?: string;
+    bing?: string;
+  };
+
   // Sektions-Überschriften (zentral konfigurierbar)
   sectionHeadings: {
     services: string;
