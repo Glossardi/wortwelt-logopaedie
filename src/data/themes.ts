@@ -23,29 +23,75 @@ export interface ThemePreset {
     fontBody: string;
     fontHeading: string;
     sizeBase: string;
+    fontWeightNormal: string;
+    fontWeightMedium: string;
+    fontWeightSemibold: string;
+    fontWeightBold: string;
+    fontWeightExtrabold: string;
+    trackingTight: string;
+    trackingNormal: string;
+    trackingWide: string;
   };
   layout: {
     containerMax: string;
     containerPadding: string;
     sectionSpacing: string;
   };
+  spacing: {
+    xs: string;
+    sm: string;
+    md: string;
+    lg: string;
+    xl: string;
+    "2xl": string;
+    "3xl": string;
+    "4xl": string;
+  };
   border: {
     radius: string;
     radiusLg: string;
   };
   shadow: {
+    xs: string;
     sm: string;
     md: string;
+    lg: string;
+    xl: string;
   };
 }
 
 const systemFont =
   "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
 
+const baseTypography: ThemePreset["typography"] = {
+  fontBody: systemFont,
+  fontHeading: systemFont,
+  sizeBase: "16px",
+  fontWeightNormal: "400",
+  fontWeightMedium: "500",
+  fontWeightSemibold: "600",
+  fontWeightBold: "700",
+  fontWeightExtrabold: "800",
+  trackingTight: "-0.02em",
+  trackingNormal: "0em",
+  trackingWide: "0.025em",
+};
+
 const baseLayout: ThemePreset["layout"] = {
   containerMax: "1120px",
   containerPadding: "1.25rem",
   sectionSpacing: "5rem",
+};
+
+const baseSpacing: ThemePreset["spacing"] = {
+  xs: "0.25rem",
+  sm: "0.5rem",
+  md: "1rem",
+  lg: "1.5rem",
+  xl: "2rem",
+  "2xl": "3rem",
+  "3xl": "4rem",
+  "4xl": "5rem",
 };
 
 const baseBorder: ThemePreset["border"] = {
@@ -54,8 +100,11 @@ const baseBorder: ThemePreset["border"] = {
 };
 
 const baseShadow: ThemePreset["shadow"] = {
+  xs: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
   sm: "0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.08)",
   md: "0 4px 12px -2px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.06)",
+  lg: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+  xl: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
 };
 
 export const themes: Record<string, ThemePreset> = {
@@ -73,12 +122,9 @@ export const themes: Record<string, ThemePreset> = {
       onPrimary: "#ffffff",
       border: "#e2e8f0",
     },
-    typography: {
-      fontBody: systemFont,
-      fontHeading: systemFont,
-      sizeBase: "16px",
-    },
+    typography: baseTypography,
     layout: baseLayout,
+    spacing: baseSpacing,
     border: baseBorder,
     shadow: baseShadow,
   },
@@ -98,11 +144,11 @@ export const themes: Record<string, ThemePreset> = {
       border: "#e7e5e4",
     },
     typography: {
-      fontBody: "'Georgia', 'Times New Roman', serif",
-      fontHeading: systemFont,
-      sizeBase: "16px",
+      ...baseTypography,
+      fontBody: "Georgia, 'Times New Roman', Times, serif",
     },
     layout: baseLayout,
+    spacing: baseSpacing,
     border: { radius: "0.375rem", radiusLg: "0.75rem" },
     shadow: baseShadow,
   },
@@ -121,12 +167,9 @@ export const themes: Record<string, ThemePreset> = {
       onPrimary: "#ffffff",
       border: "#d1e7dd",
     },
-    typography: {
-      fontBody: systemFont,
-      fontHeading: systemFont,
-      sizeBase: "16px",
-    },
+    typography: baseTypography,
     layout: baseLayout,
+    spacing: baseSpacing,
     border: baseBorder,
     shadow: baseShadow,
   },
@@ -145,16 +188,16 @@ export const themes: Record<string, ThemePreset> = {
       onPrimary: "#0f0d1a",
       border: "#2d2a3e",
     },
-    typography: {
-      fontBody: systemFont,
-      fontHeading: systemFont,
-      sizeBase: "16px",
-    },
+    typography: baseTypography,
     layout: baseLayout,
+    spacing: baseSpacing,
     border: { radius: "0.75rem", radiusLg: "1.25rem" },
     shadow: {
+      xs: "0 1px 2px 0 rgb(0 0 0 / 0.2)",
       sm: "0 1px 3px 0 rgb(0 0 0 / 0.3), 0 1px 2px -1px rgb(0 0 0 / 0.3)",
       md: "0 4px 12px -2px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.3)",
+      lg: "0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.4)",
+      xl: "0 20px 25px -5px rgb(0 0 0 / 0.45), 0 8px 10px -6px rgb(0 0 0 / 0.45)",
     },
   },
 
@@ -172,16 +215,16 @@ export const themes: Record<string, ThemePreset> = {
       onPrimary: "#ffffff",
       border: "#e4e4e7",
     },
-    typography: {
-      fontBody: systemFont,
-      fontHeading: systemFont,
-      sizeBase: "16px",
-    },
+    typography: baseTypography,
     layout: baseLayout,
+    spacing: baseSpacing,
     border: { radius: "0.25rem", radiusLg: "0.5rem" },
     shadow: {
+      xs: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
       sm: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
       md: "0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.05)",
+      lg: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+      xl: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
     },
   },
 };
@@ -198,6 +241,7 @@ export function resolveTheme(
     colors: { ...base.colors, ...overrides.colors },
     typography: { ...base.typography, ...overrides.typography },
     layout: { ...base.layout, ...overrides.layout },
+    spacing: { ...base.spacing, ...overrides.spacing },
     border: { ...base.border, ...overrides.border },
     shadow: { ...base.shadow, ...overrides.shadow },
   };
