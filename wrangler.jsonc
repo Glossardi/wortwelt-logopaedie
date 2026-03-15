@@ -1,0 +1,8 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "wortwelt-logopaedie",
+  "compatibility_date": "2026-03-15",
+  "assets": {
+    "directory": "./dist"
+  }
+}
